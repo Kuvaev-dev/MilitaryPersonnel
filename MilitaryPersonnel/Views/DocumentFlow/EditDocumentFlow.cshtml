@@ -1,0 +1,75 @@
+﻿@model Domain.Models.DocumentFlow
+
+@{
+    ViewData["Title"] = "Edit Document";
+}
+
+<h2>Edit Document</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<form asp-action="EditDocumentFlow" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Title" class="control-label">Document Title</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Content" class="control-label">Document Content</label>
+        <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DocumentTypeId" class="control-label">Document Type</label>
+        <select asp-for="DocumentTypeId" class="form-control" asp-items="ViewBag.DocumentTypeList">
+            <option value="">Select Document Type</option>
+        </select>
+        <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StatusId" class="control-label">Document Status</label>
+        <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusList">
+            <option value="">Select Status</option>
+        </select>
+        <span asp-validation-for="StatusId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreatedById" class="control-label">Created By</label>
+        <select asp-for="CreatedById" class="form-control" asp-items="ViewBag.CreatedByList">
+            <option value="">Select Serviceman</option>
+        </select>
+        <span asp-validation-for="CreatedById" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreatedDate" class="control-label">Creation Date</label>
+        <input asp-for="CreatedDate" class="form-control" readonly />
+        <span asp-validation-for="CreatedDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="DocumentFlow" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

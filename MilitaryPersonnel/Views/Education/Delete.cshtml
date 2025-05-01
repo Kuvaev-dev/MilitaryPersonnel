@@ -1,0 +1,41 @@
+﻿@model Domain.Models.Education
+
+@{
+    ViewData["Title"] = "Delete Education";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <div class="col-md-10">
+            <h2>Are you sure you want to delete this education record?</h2>
+
+            <dl class="dl-horizontal">
+                <div class="form-group">
+                    <dt class="col-sm-2">Education Level</dt>
+                    <dd class="form-control-static">@Model.EducationLevel</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Institution</dt>
+                    <dd class="form-control-static">@Model.Institution</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Specialty</dt>
+                    <dd class="form-control-static">@Model.Specialty</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Graduation Year</dt>
+                    <dd class="form-control-static">@Model.GraduationYear</dd>
+                </div>
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

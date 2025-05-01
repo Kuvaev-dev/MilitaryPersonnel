@@ -1,0 +1,97 @@
+﻿@model Domain.Models.Serviceman
+
+@{
+    ViewData["Title"] = "Delete Serviceman";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <div class="col-md-10">
+            <h2>Are you sure you want to delete this serviceman?</h2>
+
+            <dl class="dl-horizontal">
+                <div class="form-group">
+                    <dt class="col-sm-2">First Name</dt>
+                    <dd class="form-control-static">@Model.FirstName</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Last Name</dt>
+                    <dd class="form-control-static">@Model.LastName</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Middle Name</dt>
+                    <dd class="form-control-static">@Model.MiddleName</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Birth Date</dt>
+                    <dd class="form-control-static">@Model.BirthDate</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Civil Profession</dt>
+                    <dd class="form-control-static">@Model.CivilProfession</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Military Specialty</dt>
+                    <dd class="form-control-static">@Model.MilitarySpecialty</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Education</dt>
+                    <dd class="form-control-static">@Model.Education</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Position</dt>
+                    <dd class="form-control-static">@Model.Position</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Subdivision</dt>
+                    <dd class="form-control-static">@Model.Subdivision</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Service Form</dt>
+                    <dd class="form-control-static">@Model.ServiceForm</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Character Trait</dt>
+                    <dd class="form-control-static">@Model.CharacterTrait</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Service Attitude</dt>
+                    <dd class="form-control-static">@Model.ServiceAttitude</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Service Status</dt>
+                    <dd class="form-control-static">@Model.ServiceStatus</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Fitness Category</dt>
+                    <dd class="form-control-static">@Model.FitnessCategory</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Address</dt>
+                    <dd class="form-control-static">@Model.Address</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Phone</dt>
+                    <dd class="form-control-static">@Model.Phone</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Email</dt>
+                    <dd class="form-control-static">@Model.Email</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Is Officer</dt>
+                    <dd class="form-control-static">@Model.IsOfficer</dd>
+                </div>
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

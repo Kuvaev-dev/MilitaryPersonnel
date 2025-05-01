@@ -1,0 +1,61 @@
+﻿@model Domain.Models.FamilyMember
+
+@{
+    ViewData["Title"] = "Create Family Member";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2 class="text-danger">@ViewBag.Message</h2>
+        <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServicemanId, "Select Serviceman", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(
+                         model => model.ServicemanId,
+                         new SelectList(ViewBag.ServicemanList, "ServicemanId", "ServicemanFullName"),
+                         "Select Serviceman",
+                         new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ServicemanId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FullName, "Enter Full Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Relationship, "Enter Relationship", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Relationship, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Relationship, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthDate, "Enter Birth Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+                @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

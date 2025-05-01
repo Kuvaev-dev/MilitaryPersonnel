@@ -1,0 +1,79 @@
+/* Military Theme */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F5F5F5;
+}
+
+.navbar-dark .navbar-brand {
+    color: #BDB76B;
+    font-weight: bold;
+}
+
+.btn-success {
+    background-color: #556B2F;
+    border-color: #556B2F;
+}
+
+    .btn-success:hover {
+        background-color: #6B8E23;
+        border-color: #6B8E23;
+    }
+
+.btn-primary {
+    background-color: #2F4F4F;
+    border-color: #2F4F4F;
+}
+
+    .btn-primary:hover {
+        background-color: #3C6363;
+        border-color: #3C6363;
+    }
+
+.btn-danger {
+    background-color: #8B0000;
+    border-color: #8B0000;
+}
+
+    .btn-danger:hover {
+        background-color: #A52A2A;
+        border-color: #A52A2A;
+    }
+
+.card {
+    border: 1px solid #333333;
+    background-color: #FFFFFF;
+}
+
+.table thead th {
+    background-color: #2F4F4F;
+    color: #BDB76B;
+}
+
+.table tbody tr:hover {
+    background-color: #E8ECEF;
+}
+
+.form-control:focus {
+    border-color: #BDB76B;
+    box-shadow: 0 0 0 0.2rem rgba(189, 183, 107, 0.25);
+}
+
+.text-danger {
+    color: #8B0000 !important;
+}
+
+/* DataTables Styling */
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    border-color: #333333;
+    background-color: #FFFFFF;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #BDB76B !important;
+}
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #556B2F !important;
+        color: #FFFFFF !important;
+    }

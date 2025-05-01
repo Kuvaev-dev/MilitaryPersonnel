@@ -1,0 +1,57 @@
+﻿@model Domain.Models.DocumentFlow
+
+@{
+    ViewData["Title"] = "Медична довідка";
+    ViewData["DocumentTitle"] = "МЕДИЧНА ДОВІДКА";
+    ViewData["DocumentSubtitle"] = "Про стан здоров’я";
+    Layout = null;
+}
+
+<style>
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 14pt;
+        line-height: 1.5;
+        margin: 20mm 10mm 20mm 30mm;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20mm;
+    }
+
+    .content {
+        text-align: justify;
+    }
+
+    .footer {
+        margin-top: 20mm;
+    }
+
+    .signature {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10mm;
+    }
+</style>
+
+@await Html.PartialAsync("_DocumentHeader", Model)
+
+<div class="content">
+    <p>Довідка видана @Model.CreatedBy.</p>
+    <p>Зміст документа:<hr />@Model.Content</p>
+    <p>Тип документа: @Model.DocumentType</p>
+    <p>Статус: @Model.Status</p>
+</div>
+
+<div class="footer">
+    <div class="signature">
+        <div>
+            <p>Лікар</p>
+            <p>_____________________ @Model.CreatedBy</p>
+        </div>
+        <div>
+            <p>Дата: @(Model.CreatedDate?.ToString("dd.MM.yyyy"))</p>
+        </div>
+    </div>
+</div>

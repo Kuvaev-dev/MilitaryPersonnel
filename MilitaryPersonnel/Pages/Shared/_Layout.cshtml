@@ -1,0 +1,588 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Military Personnel AIS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #2F4F4F;">
+        <div class="container-fluid">
+            <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="/">Military Personnel AIS</a>
+            <div class="flex-grow-1"></div>
+            <ul class="navbar-nav ms-auto">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-khaki" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle me-1"></i> @User.Identity.Name
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form asp-controller="Home" asp-action="Logout" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-khaki" asp-controller="Home" asp-action="Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-khaki" asp-controller="Home" asp-action="Register">Register</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar (Offcanvas on mobile, fixed on desktop) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+        <div class="offcanvas-header" style="background-color: #333333;">
+            <h5 class="offcanvas-title text-khaki" id="sidebarLabel">Navigation</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" style="background-color: #333333;">
+            <ul class="nav flex-column">
+                <!-- Personnel Management -->
+                <li class="nav-item">
+                    <h6 class="nav-header text-khaki mt-3">Personnel Management</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Serviceman" asp-action="Index">
+                        <i class="bi bi-person"></i> Servicemen
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="ContactInfo" asp-action="Index">
+                        <i class="bi bi-telephone"></i> Contact Info
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="FamilyMember" asp-action="Index">
+                        <i class="bi bi-people"></i> Family Members
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="ServiceHistory" asp-action="Index">
+                        <i class="bi bi-clock-history"></i> Service History
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="ServiceStatus" asp-action="Index">
+                        <i class="bi bi-info-circle"></i> Service Status
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Subdivision" asp-action="Index">
+                        <i class="bi bi-diagram-3"></i> Subdivisions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="MilitaryUnit" asp-action="Index">
+                        <i class="bi bi-building"></i> Military Units
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Position" asp-action="Index">
+                        <i class="bi bi-briefcase"></i> Positions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="MilitarySpecialty" asp-action="Index">
+                        <i class="bi bi-tools"></i> Military Specialties
+                    </a>
+                </li>
+                <!-- Training & Development -->
+                <li class="nav-item">
+                    <h6 class="nav-header text-khaki mt-3">Training & Development</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Training" asp-action="Index">
+                        <i class="bi bi-book"></i> Trainings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Education" asp-action="Index">
+                        <i class="bi bi-mortarboard"></i> Education
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="LanguageSkill" asp-action="Index">
+                        <i class="bi bi-globe"></i> Language Skills
+                    </a>
+                </li>
+                <!-- Awards & Discipline -->
+                <li class="nav-item">
+                    <h6 class="nav-header text-khaki mt-3">Awards & Discipline</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Award" asp-action="Index">
+                        <i class="bi bi-award"></i> Awards
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Punishment" asp-action="Index">
+                        <i class="bi bi-exclamation-triangle"></i> Punishments
+                    </a>
+                </li>
+                <!-- Medical & Fitness -->
+                <li class="nav-item">
+                    <h6 class="nav-header text-khaki mt-3">Medical & Fitness</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="MedicalRecord" asp-action="Index">
+                        <i class="bi bi-file-medical"></i> Medical Records
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="FitnessCategory" asp-action="Index">
+                        <i class="bi bi-heart-pulse"></i> Fitness Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="PsychologicalProfile" asp-action="Index">
+                        <i class="bi bi-person-lines-fill"></i> Psychological Profiles
+                    </a>
+                </li>
+                <!-- Mobilization & Operations -->
+                <li class="nav-item">
+                    <h6 class="nav-header text-khaki mt-3">Mobilization & Operations</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="MobilizationList" asp-action="Index">
+                        <i class="bi bi-list-ul"></i> Mobilization Lists
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="MobilizationListEntry" asp-action="Index">
+                        <i class="bi bi-list-check"></i> Mobilization List Entries
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="OperationalReadiness" asp-action="Index">
+                        <i class="bi bi-shield-check"></i> Operational Readiness
+                    </a>
+                </li>
+                <!-- Documentation -->
+                <li class="nav-item">
+                    <h6 class="nav-header text-khaki mt-3">Documentation</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="Index">
+                        <i class="bi bi-files"></i> Documents
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="DocumentFlow" asp-action="Index">
+                        <i class="bi bi-arrow-left-right"></i> Document Flow
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="DocumentStatus" asp-action="Index">
+                        <i class="bi bi-info-circle"></i> Document Status
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="DocumentType" asp-action="Index">
+                        <i class="bi bi-file-earmark-text"></i> Document Types
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Resolution" asp-action="Index">
+                        <i class="bi bi-file-earmark-post"></i> Resolutions
+                    </a>
+                </li>
+                <!-- Document Creation -->
+                <li class="nav-item">
+                    <h6 class="nav-header text-khaki mt-3">Document Creation</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateApprovalResolution" title="Create Approval Resolution">
+                        <i class="bi bi-check-circle"></i> Approval Resolution
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateAssignmentNotice" title="Create Assignment Notice">
+                        <i class="bi bi-person-plus"></i> Assignment Notice
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateAwardRecommendation" title="Create Award Recommendation">
+                        <i class="bi bi-award"></i> Award Recommendation
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateDischargeOrder" title="Create Discharge Order">
+                        <i class="bi bi-box-arrow-right"></i> Discharge Order
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateLeaveRequest" title="Create Leave Request">
+                        <i class="bi bi-calendar2-x"></i> Leave Request
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateMedicalCertificate" title="Create Medical Certificate">
+                        <i class="bi bi-file-medical"></i> Medical Certificate
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateMobilizationList" title="Create Mobilization List">
+                        <i class="bi bi-list-ul"></i> Mobilization List
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateOrderPersonnel" title="Create Order Personnel">
+                        <i class="bi bi-people"></i> Order Personnel
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateServiceCertificate" title="Create Service Certificate">
+                        <i class="bi bi-patch-check"></i> Service Certificate
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateTrainingReport" title="Create Training Report">
+                        <i class="bi bi-book"></i> Training Report
+                    </a>
+                </li>
+                <!-- Other -->
+                <li class="nav-item">
+                    <h6 class="nav-header text-khaki mt-3">Other</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="CharacterTrait" asp-action="Index">
+                        <i class="bi bi-person-heart"></i> Character Traits
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="CivilProfession" asp-action="Index">
+                        <i class="bi bi-briefcase"></i> Civil Professions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="Discharge" asp-action="Index">
+                        <i class="bi bi-box-arrow-right"></i> Discharges
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="ServiceAttitude" asp-action="Index">
+                        <i class="bi bi-person-check"></i> Service Attitudes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-khaki" asp-controller="ServiceForm" asp-action="Index">
+                        <i class="bi bi-file-earmark"></i> Service Forms
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="d-none d-lg-block col-lg-3 sidebar-fixed" style="background-color: #333333; height: calc(100vh - 56px);">
+                <div class="pt-3">
+                    <ul class="nav flex-column">
+                        <!-- Personnel Management -->
+                        <li class="nav-item">
+                            <h6 class="nav-header text-khaki mt-3">Personnel Management</h6>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Serviceman" asp-action="Index">
+                                <i class="bi bi-person"></i> Servicemen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="ContactInfo" asp-action="Index">
+                                <i class="bi bi-telephone"></i> Contact Info
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="FamilyMember" asp-action="Index">
+                                <i class="bi bi-people"></i> Family Members
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="ServiceHistory" asp-action="Index">
+                                <i class="bi bi-clock-history"></i> Service History
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="ServiceStatus" asp-action="Index">
+                                <i class="bi bi-info-circle"></i> Service Status
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Subdivision" asp-action="Index">
+                                <i class="bi bi-diagram-3"></i> Subdivisions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="MilitaryUnit" asp-action="Index">
+                                <i class="bi bi-building"></i> Military Units
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Position" asp-action="Index">
+                                <i class="bi bi-briefcase"></i> Positions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="MilitarySpecialty" asp-action="Index">
+                                <i class="bi bi-tools"></i> Military Specialties
+                            </a>
+                        </li>
+                        <!-- Training & Development -->
+                        <li class="nav-item">
+                            <h6 class="nav-header text-khaki mt-3">Training & Development</h6>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Training" asp-action="Index">
+                                <i class="bi bi-book"></i> Trainings
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Education" asp-action="Index">
+                                <i class="bi bi-mortarboard"></i> Education
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="LanguageSkill" asp-action="Index">
+                                <i class="bi bi-globe"></i> Language Skills
+                            </a>
+                        </li>
+                        <!-- Awards & Discipline -->
+                        <li class="nav-item">
+                            <h6 class="nav-header text-khaki mt-3">Awards & Discipline</h6>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Award" asp-action="Index">
+                                <i class="bi bi-award"></i> Awards
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Punishment" asp-action="Index">
+                                <i class="bi bi-exclamation-triangle"></i> Punishments
+                            </a>
+                        </li>
+                        <!-- Medical & Fitness -->
+                        <li class="nav-item">
+                            <h6 class="nav-header text-khaki mt-3">Medical & Fitness</h6>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="MedicalRecord" asp-action="Index">
+                                <i class="bi bi-file-medical"></i> Medical Records
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="FitnessCategory" asp-action="Index">
+                                <i class="bi bi-heart-pulse"></i> Fitness Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="PsychologicalProfile" asp-action="Index">
+                                <i class="bi bi-person-lines-fill"></i> Psychological Profiles
+                            </a>
+                        </li>
+                        <!-- Mobilization & Operations -->
+                        <li class="nav-item">
+                            <h6 class="nav-header text-khaki mt-3">Mobilization & Operations</h6>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="MobilizationList" asp-action="Index">
+                                <i class="bi bi-list-ul"></i> Mobilization Lists
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="MobilizationListEntry" asp-action="Index">
+                                <i class="bi bi-list-check"></i> Mobilization List Entries
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="OperationalReadiness" asp-action="Index">
+                                <i class="bi bi-shield-check"></i> Operational Readiness
+                            </a>
+                        </li>
+                        <!-- Documentation -->
+                        <li class="nav-item">
+                            <h6 class="nav-header text-khaki mt-3">Documentation</h6>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="Index">
+                                <i class="bi bi-files"></i> Documents
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="DocumentFlow" asp-action="Index">
+                                <i class="bi bi-arrow-left-right"></i> Document Flow
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="DocumentStatus" asp-action="Index">
+                                <i class="bi bi-info-circle"></i> Document Status
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="DocumentType" asp-action="Index">
+                                <i class="bi bi-file-earmark-text"></i> Document Types
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Resolution" asp-action="Index">
+                                <i class="bi bi-stamp"></i> Resolutions
+                            </a>
+                        </li>
+                        <!-- Document Creation -->
+                        <li class="nav-item">
+                            <h6 class="nav-header text-khaki mt-3">Document Creation</h6>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateApprovalResolution" title="Create Approval Resolution">
+                                <i class="bi bi-check-circle"></i> Approval Resolution
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateAssignmentNotice" title="Create Assignment Notice">
+                                <i class="bi bi-person-plus"></i> Assignment Notice
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateAwardRecommendation" title="Create Award Recommendation">
+                                <i class="bi bi-award"></i> Award Recommendation
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateDischargeOrder" title="Create Discharge Order">
+                                <i class="bi bi-box-arrow-right"></i> Discharge Order
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateLeaveRequest" title="Create Leave Request">
+                                <i class="bi bi-calendar2-x"></i> Leave Request
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateMedicalCertificate" title="Create Medical Certificate">
+                                <i class="bi bi-file-medical"></i> Medical Certificate
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateMobilizationList" title="Create Mobilization List">
+                                <i class="bi bi-list-ul"></i> Mobilization List
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateOrderPersonnel" title="Create Order Personnel">
+                                <i class="bi bi-people"></i> Order Personnel
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateServiceCertificate" title="Create Service Certificate">
+                                <i class="bi bi-patch-check"></i> Service Certificate
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Document" asp-action="CreateTrainingReport" title="Create Training Report">
+                                <i class="bi bi-book"></i> Training Report
+                            </a>
+                        </li>
+                        <!-- Other -->
+                        <li class="nav-item">
+                            <h6 class="nav-header text-khaki mt-3">Other</h6>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="CharacterTrait" asp-action="Index">
+                                <i class="bi bi-person-heart"></i> Character Traits
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="CivilProfession" asp-action="Index">
+                                <i class="bi bi-briefcase"></i> Civil Professions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="Discharge" asp-action="Index">
+                                <i class="bi bi-box-arrow-right"></i> Discharges
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="ServiceAttitude" asp-action="Index">
+                                <i class="bi bi-person-check"></i> Service Attitudes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-khaki" asp-controller="ServiceForm" asp-action="Index">
+                                <i class="bi bi-file-earmark"></i> Service Forms
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9 offset-lg-3 col-12 main-content">
+                <div class="p-3">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-9 offset-lg-3 col-12 main-content">
+        <div class="p-3">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+<style>
+    .text-khaki {
+        color: #BDB76B !important;
+    }
+
+    .sidebar-fixed {
+        position: fixed;
+        top: 56px;
+        width: 25%;
+        overflow-y: auto;
+    }
+
+    .main-content {
+        background-color: #F5F5F5;
+        min-height: calc(100vh - 56px);
+    }
+
+    .nav-link:hover {
+        background-color: #556B2F;
+        color: #FFFFFF !important;
+    }
+
+    .nav-header {
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+    }
+</style>

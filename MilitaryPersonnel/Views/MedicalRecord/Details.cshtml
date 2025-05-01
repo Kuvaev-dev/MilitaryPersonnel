@@ -1,0 +1,37 @@
+﻿@model Domain.Models.MedicalRecord
+
+@{
+    ViewData["Title"] = "Medical Record Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal">
+    <div class="col-md-10">
+        <dl class="dl-horizontal">
+            <dt>
+                Serviceman
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ServicemenFullName)
+            </dd>
+            <dt>
+                Medical Condition
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MedicalCondition)
+            </dd>
+            <dt>
+                Record Date
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RecordDate)
+            </dd>
+        </dl>
+        <div class="form-group">
+            <div class="col-md-offset-2">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+</div>

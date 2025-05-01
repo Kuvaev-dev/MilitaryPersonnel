@@ -1,0 +1,45 @@
+﻿@model Domain.Models.ServiceHistory
+
+@{
+    ViewData["Title"] = "Delete Service History";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <div class="col-md-10">
+            <h2>Are you sure you want to delete this service history?</h2>
+
+            <dl class="dl-horizontal">
+                <div class="form-group">
+                    <dt class="col-sm-2">Serviceman</dt>
+                    <dd class="form-control-static">@Model.ServicemanFullName</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Position</dt>
+                    <dd class="form-control-static">@Model.PositionTitle</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Subdivision</dt>
+                    <dd class="form-control-static">@Model.SubdivisionTitle</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Start Date</dt>
+                    <dd class="form-control-static">@Model.StartDate</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">End Date</dt>
+                    <dd class="form-control-static">@Model.EndDate</dd>
+                </div>
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

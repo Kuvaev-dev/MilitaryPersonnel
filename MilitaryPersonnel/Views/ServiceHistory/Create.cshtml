@@ -1,0 +1,77 @@
+﻿@model Domain.Models.ServiceHistory
+
+@{
+    ViewData["Title"] = "Create Service History";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2 class="text-danger">@ViewBag.Message</h2>
+        <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServicemanId, "Select Serviceman", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(
+                         model => model.ServicemanId,
+                         new SelectList(ViewBag.ServicemanList, "ServicemanId", "ServicemanFullName"),
+                         "Select Serviceman",
+                         new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ServicemanId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PositionId, "Select Position", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(
+                         model => model.PositionId,
+                         new SelectList(ViewBag.PositionList, "PositionId", "PositionTitle"),
+                         "Select Position",
+                         new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PositionId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubdivisionId, "Select Subdivision", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(
+                         model => model.SubdivisionId,
+                         new SelectList(ViewBag.SubdivisionList, "SubdivisionId", "SubdivisionTitle"),
+                         "Select Subdivision (Optional)",
+                         new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubdivisionId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, "Enter Start Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, "Enter End Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+                @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

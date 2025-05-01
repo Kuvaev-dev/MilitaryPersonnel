@@ -1,0 +1,33 @@
+﻿@model Domain.Models.ServiceStatus
+
+@{
+    ViewData["Title"] = "Delete Service Status";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <div class="col-md-10">
+            <h2>Are you sure you want to delete this service status?</h2>
+
+            <dl class="dl-horizontal">
+                <div class="form-group">
+                    <dt class="col-sm-2">ID</dt>
+                    <dd class="form-control-static">@Model.Id</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Status Name</dt>
+                    <dd class="form-control-static">@Model.StatusName</dd>
+                </div>
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

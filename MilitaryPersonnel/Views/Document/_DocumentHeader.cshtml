@@ -1,0 +1,9 @@
+﻿@model Domain.Models.DocumentFlow
+
+<div class="header">
+    <p>Військова частина А1234</p>
+    <p>Міністерство оборони України</p>
+    <h2>@ViewData["DocumentTitle"]</h2>
+    <p>№ @Model.Id від @(Model.CreatedDate?.ToString("dd.MM.yyyy"))</p>
+    <p>@ViewData["DocumentSubtitle"]</p>
+</div>

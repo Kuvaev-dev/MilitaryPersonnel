@@ -1,0 +1,48 @@
+﻿@model Domain.Models.Training
+
+@{
+    ViewData["Title"] = "Delete Training";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <div class="col-md-10">
+            <h2>Are you sure you want to delete this training?</h2>
+
+            <dl class="dl-horizontal">
+                <div class="form-group">
+                    <dt class="col-sm-2">ID</dt>
+                    <dd class="form-control-static">@Model.Id</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Training Name</dt>
+                    <dd class="form-control-static">@Model.TrainingName</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Start Date</dt>
+                    <dd class="form-control-static">@Model.StartDate</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">End Date</dt>
+                    <dd class="form-control-static">@Model.EndDate</dd>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.ServicemenFullName))
+                {
+                    <div class="form-group">
+                        <dt class="col-sm-2">Servicemen</dt>
+                        <dd class="form-control-static">@Model.ServicemenFullName</dd>
+                    </div>
+                }
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

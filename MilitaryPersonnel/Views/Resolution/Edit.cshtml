@@ -1,0 +1,66 @@
+﻿@model Domain.Models.Resolution
+
+@{
+    ViewData["Title"] = "Edit Resolution";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2 class="text-danger">@ViewBag.Message</h2>
+        <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DocumentId, "Select New Document", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(
+                         model => model.DocumentId,
+                         new SelectList(ViewBag.DocumentList, "DocumentId", "DocumentTitle"),
+                         "Select Document",
+                         new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DocumentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AuthorId, "Select New Author", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(
+                         model => model.AuthorId,
+                         new SelectList(ViewBag.AuthorList, "AuthorId", "AuthorFullName"),
+                         "Select Author",
+                         new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AuthorId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ResolutionText, "Enter New Resolution Text", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.TextAreaFor(model => model.ResolutionText, new { @class = "form-control", rows = "5" })
+                @Html.ValidationMessageFor(model => model.ResolutionText, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ResolutionDate, "Enter New Resolution Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.ResolutionDate, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
+                @Html.ValidationMessageFor(model => model.ResolutionDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-success" />
+                @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

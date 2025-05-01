@@ -1,0 +1,46 @@
+﻿@model Domain.Models.DocumentFlow
+
+@{
+    ViewData["Title"] = "Approve Document";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<style>
+    .gost-document {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 14pt;
+        line-height: 1.5;
+        margin: 20mm 10mm 20mm 30mm;
+    }
+</style>
+
+<div class="gost-document">
+    <h2>Підтвердити документ</h2>
+    <h2 class="text-danger">@ViewBag.Message</h2>
+    <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StatusId, "Статус документа", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.DropDownListFor(model => model.StatusId, new SelectList(ViewBag.StatusList, "Id", "StatusName"), "Виберіть статус", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Підтвердити" class="btn btn-success" />
+                    @Html.ActionLink("Назад до списку", "DocumentFlow", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

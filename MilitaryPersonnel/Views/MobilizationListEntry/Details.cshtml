@@ -1,0 +1,31 @@
+﻿@model Domain.Models.MobilizationListEntry
+
+@{
+    ViewData["Title"] = "Mobilization List Entry Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal">
+    <div class="col-md-10">
+        <dl class="dl-horizontal">
+            <dt>
+                Mobilization List
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MobilizationListName)
+            </dd>
+            <dt>
+                Serviceman
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ServicemenFullName)
+            </dd>
+        </dl>
+        <div class="form-group">
+            <div class="col-md-offset-2">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Back to List", "Index", new { mobilizationListId = Model.MobilizationListId }, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+</div>

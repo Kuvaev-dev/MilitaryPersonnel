@@ -1,0 +1,54 @@
+﻿@model Domain.Models.Resolution
+
+@{
+    ViewData["Title"] = "Resolve Document";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<style>
+    .gost-document {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 14pt;
+        line-height: 1.5;
+        margin: 20mm 10mm 20mm 30mm;
+    }
+</style>
+
+<div class="gost-document">
+    <h2>Резолюція документа</h2>
+    <h2 class="text-danger">@ViewBag.Message</h2>
+    <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.DocumentId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AuthorId, "Автор резолюції", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.DropDownListFor(model => model.AuthorId, new SelectList(ViewBag.AuthorList, "Id", "FullName"), "Виберіть автора", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AuthorId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ResolutionText, "Текст резолюції", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.TextAreaFor(model => model.ResolutionText, new { @class = "form-control", rows = "5" })
+                    @Html.ValidationMessageFor(model => model.ResolutionText, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Додати резолюцію" class="btn btn-success" />
+                    @Html.ActionLink("Назад до списку", "DocumentFlow", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

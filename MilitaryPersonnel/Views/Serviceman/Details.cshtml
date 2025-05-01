@@ -1,0 +1,127 @@
+﻿@model Domain.Models.Serviceman
+
+@{
+    ViewData["Title"] = "Serviceman Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal">
+    <div class="col-md-10">
+        <dl class="dl-horizontal">
+            <dt>
+                First Name
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt>
+                Last Name
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt>
+                Middle Name
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MiddleName)
+            </dd>
+            <dt>
+                Birth Date
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BirthDate)
+            </dd>
+            <dt>
+                Civil Profession
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CivilProfession)
+            </dd>
+            <dt>
+                Military Specialty
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MilitarySpecialty)
+            </dd>
+            <dt>
+                Education
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Education)
+            </dd>
+            <dt>
+                Position
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Position)
+            </dd>
+            <dt>
+                Subdivision
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Subdivision)
+            </dd>
+            <dt>
+                Service Form
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ServiceForm)
+            </dd>
+            <dt>
+                Character Trait
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CharacterTrait)
+            </dd>
+            <dt>
+                Service Attitude
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ServiceAttitude)
+            </dd>
+            <dt>
+                Service Status
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ServiceStatus)
+            </dd>
+            <dt>
+                Fitness Category
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FitnessCategory)
+            </dd>
+            <dt>
+                Address
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                Phone
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dt>
+                Email
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                Is Officer
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsOfficer)
+            </dd>
+        </dl>
+        <div class="form-group">
+            <div class="col-md-offset-2">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+</div>
