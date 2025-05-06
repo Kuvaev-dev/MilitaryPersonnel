@@ -1,12 +1,12 @@
 ﻿@model Domain.Models.DocumentFlow
 
 @{
-    ViewData["Title"] = "Створити документ";
+    ViewData["Title"] = "Create Document";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <div class="form-horizontal">
-    <h2>Створити документ</h2>
+    <h2>Create Document</h2>
     <h2 class="text-danger">@TempData["ErrorMessage"]</h2>
     <h2 class="text-success">@TempData["SuccessMessage"]</h2>
 
@@ -17,7 +17,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, "Назва документа", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Title, "Document Title", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Content, "Зміст документа", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Content, "Document Content", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @Html.TextAreaFor(model => model.Content, new { @class = "form-control", rows = "5" })
                 @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
@@ -33,41 +33,41 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DocumentTypeId, "Тип документа", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DocumentTypeId, "Document Type", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownListFor(model => model.DocumentTypeId, ViewBag.DocumentTypeList as SelectList, "-- Виберіть тип документа --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.DocumentTypeId, ViewBag.DocumentTypeList as SelectList, "-- Select Document Type --", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DocumentTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CreatedById, "Створено", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CreatedById, "Created By", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownListFor(model => model.CreatedById, ViewBag.CreatedByList as SelectList, "-- Виберіть військовослужбовця --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.CreatedById, ViewBag.CreatedByList as SelectList, "-- Select Serviceman --", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CreatedById, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ServicemanId, "Пов’язаний військовослужбовець", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ServicemanId, "Related Serviceman", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownListFor(model => model.ServicemanId, ViewBag.CreatedByList as SelectList, "-- Виберіть військовослужбовця (необов’язково) --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.ServicemanId, ViewBag.ServicemanList as SelectList, "-- Select Serviceman (Optional) --", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ServicemanId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StatusId, "Статус документа", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StatusId, "Document Status", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownListFor(model => model.StatusId, ViewBag.StatusList as SelectList, "-- Виберіть статус --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.StatusId, ViewBag.StatusList as SelectList, "-- Select Status --", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Створити" class="btn btn-success" />
-                @Html.ActionLink("Назад до списку документів", "Index", "DocumentFlow", null, new { @class = "btn btn-default" })
+                <input type="submit" value="Create" class="btn btn-success" />
+                @Html.ActionLink("Back to Document List", "Index", "DocumentFlow", null, new { @class = "btn btn-default" })
             </div>
         </div>
     }

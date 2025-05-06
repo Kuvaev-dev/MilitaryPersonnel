@@ -1,0 +1,41 @@
+﻿@model Domain.Models.Document
+
+@{
+    ViewData["Title"] = "Delete Document";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <div class="col-md-10">
+            <h2>Are you sure you want to delete this document?</h2>
+
+            <dl class="dl-horizontal">
+                <div class="form-group">
+                    <dt class="col-sm-2">Document Number</dt>
+                    <dd class="form-control-static">@Model.DocumentNumber</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Document Type</dt>
+                    <dd class="form-control-static">@Model.DocumentType</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Serviceman</dt>
+                    <dd class="form-control-static">@Model.ServicemenFullName</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">Issue Date</dt>
+                    <dd class="form-control-static">@Model.IssueDate</dd>
+                </div>
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

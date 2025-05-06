@@ -38,8 +38,8 @@
 @await Html.PartialAsync("_DocumentHeader", Model)
 
 <div class="content">
-    <p>Прошу надати відпустку @Model.CreatedBy.</p>
-    <p>Зміст документа:<hr />@Model.Content</p>
+    <p>Прошу надати відпустку @Model.ServicemanFullName.</p>
+    <p>Зміст документа:<br>@Model.Content</p>
     <p>Тип документа: @Model.DocumentType</p>
     <p>Статус: @Model.Status</p>
 </div>
@@ -48,7 +48,7 @@
     <div class="signature">
         <div>
             <p>Заявник</p>
-            <p>_____________________ @Model.CreatedBy</p>
+            <p>_____________________ @Model.ServicemanFullName</p>
         </div>
         <div>
             <p>Дата: @(Model.CreatedDate?.ToString("dd.MM.yyyy"))</p>

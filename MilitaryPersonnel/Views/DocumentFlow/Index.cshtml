@@ -14,13 +14,6 @@
     #dataTable_filter input[type="search"] {
         width: 15rem;
     }
-
-    .gost-document {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 14pt;
-        line-height: 1.5;
-        margin: 20mm 10mm 20mm 30mm;
-    }
 </style>
 
 <div class="card card-default col-md-12 gost-document">
@@ -54,9 +47,9 @@
                             <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
                             <td>@Html.DisplayFor(modelItem => item.Status)</td>
                             <td class="btn btn-group">
-                                @Html.ActionLink("Edit", "EditDocumentFlow", new { id = item.Id }, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("Details", "DetailsDocumentFlow", new { id = item.Id }, new { @class = "btn btn-info" })
-                                @Html.ActionLink("Delete", "DeleteDocumentFlow", new { id = item.Id }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
                                 @Html.ActionLink("Assign", "AssignDocument", new { id = item.Id }, new { @class = "btn btn-warning" })
                                 @Html.ActionLink("Resolve", "ResolveDocument", new { id = item.Id }, new { @class = "btn btn-secondary" })
                                 @Html.ActionLink("History", "ViewDocumentHistory", new { id = item.Id }, new { @class = "btn btn-info" })

@@ -1,0 +1,45 @@
+﻿@model Domain.Models.DocumentFlow
+
+@{
+    ViewData["Title"] = "Delete Document";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <div class="col-md-10">
+            <h2>Are you sure you want to delete this document?</h2>
+
+            <dl class="dl-horizontal">
+                <div class="form-group">
+                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Title)</dt>
+                    <dd class="form-control-static">@Html.DisplayFor(model => model.Title)</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.DocumentType)</dt>
+                    <dd class="form-control-static">@Html.DisplayFor(model => model.DocumentType)</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.CreatedBy)</dt>
+                    <dd class="form-control-static">@Html.DisplayFor(model => model.CreatedBy)</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.CreatedDate)</dt>
+                    <dd class="form-control-static">@Html.DisplayFor(model => model.CreatedDate)</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Status)</dt>
+                    <dd class="form-control-static">@Html.DisplayFor(model => model.Status)</dd>
+                </div>
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "DocumentFlow", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

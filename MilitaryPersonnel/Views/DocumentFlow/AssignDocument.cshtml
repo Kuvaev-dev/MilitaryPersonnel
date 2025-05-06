@@ -5,42 +5,34 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<style>
-    .gost-document {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 14pt;
-        line-height: 1.5;
-        margin: 20mm 10mm 20mm 30mm;
-    }
-</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<div class="gost-document">
-    <h2>Призначити документ</h2>
-    <h2 class="text-danger">@ViewBag.Message</h2>
-    <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
+    <div class="form-horizontal">
+        <h2 class="text-danger">@ViewBag.Message</h2>
+        <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.DocumentId)
 
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.DocumentId)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.AssigneeId, "Призначити на", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-5">
-                    @Html.DropDownListFor(model => model.AssigneeId, new SelectList(ViewBag.AssigneeList, "Id", "FullName"), "Виберіть виконавця", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.AssigneeId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Призначити" class="btn btn-success" />
-                    @Html.ActionLink("Назад до списку", "DocumentFlow", null, new { @class = "btn btn-default" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AssigneeId, "Assign To", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(
+                         model => model.AssigneeId,
+                         new SelectList(ViewBag.AssigneeList, "Id", "FullName"),
+                         "-- Select Assignee --",
+                         new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AssigneeId, "", new { @class = "text-danger" })
             </div>
         </div>
-    }
-</div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Assign" class="btn btn-success" />
+                @Html.ActionLink("Back to List", "DocumentFlow", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

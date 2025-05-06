@@ -17,7 +17,7 @@ public partial class DocumentAssignments
 
     public DateTime? CompletedDate { get; set; }
 
-    public virtual Servicemen Servicemen { get; set; } = null!;
+    public virtual Servicemen Assignee { get; set; } = null!;
 
     public virtual DocumentFlow Document { get; set; } = null!;
 }

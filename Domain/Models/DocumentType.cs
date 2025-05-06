@@ -7,8 +7,8 @@ namespace Domain.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Type name is required.")]
-        [StringLength(100, ErrorMessage = "Type name cannot exceed 100 characters.")]
-        public string TypeName { get; set; } = null!;
+        [Required]
+        [StringLength(100)]
+        public string TypeName { get; set; }
     }
 }

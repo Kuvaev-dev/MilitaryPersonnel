@@ -28,10 +28,6 @@
         margin-top: 20mm;
     }
 
-    .footer {
-        margin-top: 20mm;
-    }
-
     .signature {
         display: flex;
         justify-content: space-between;
@@ -42,8 +38,8 @@
 @await Html.PartialAsync("_DocumentHeader", Model)
 
 <div class="content">
-    <p>Рекомендується нагородити @Model.CreatedBy.</p>
-    <p>Зміст документа:<hr />@Model.Content</p>
+    <p>Рекомендується нагородити @Model.ServicemanFullName.</p>
+    <p>Зміст документа:<br>@Model.Content</p>
     <p>Тип документа: @Model.DocumentType</p>
     <p>Статус: @Model.Status</p>
 </div>

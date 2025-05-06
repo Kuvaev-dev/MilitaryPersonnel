@@ -38,8 +38,8 @@
 @await Html.PartialAsync("_DocumentHeader", Model)
 
 <div class="content">
-    <p>Звіт складено @Model.CreatedBy.</p>
-    <p>Зміст документа:<hr />@Model.Content</p>
+    <p>Звіт складено @Model.ServicemanFullName.</p>
+    <p>Зміст документа:<br>@Model.Content</p>
     <p>Тип документа: @Model.DocumentType</p>
     <p>Статус: @Model.Status</p>
 </div>

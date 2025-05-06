@@ -4,7 +4,8 @@
     {
         Task<IEnumerable<Domain.Models.DocumentFlow>> GetAllDocumentFLowsAsync();
         Task<Domain.Models.DocumentFlow> GetDocumentFLowByIdAsync(int id);
-        Task<bool> AddDocumentFLowAsync(Domain.Models.DocumentFlow document);
+        Task<Domain.Models.DocumentFlow> GetDocumentFLowByServicemanIdAsync(int id);
+        Task<int> AddDocumentFLowAsync(Domain.Models.DocumentFlow document);
         Task<bool> UpdateDocumentFLowAsync(Domain.Models.DocumentFlow document);
         Task<bool> DeleteDocumentFLowAsync(int id);
         Task<bool> AssignDocumentAsync(int documentId, int assigneeId);

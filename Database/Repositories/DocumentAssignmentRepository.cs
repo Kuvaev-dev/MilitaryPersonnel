@@ -54,7 +54,7 @@ namespace Database.Repositories
         {
             var entities = await _context.DocumentAssignments
                 .AsNoTracking()
-                .Include(s => s.Servicemen)
+                .Include(s => s.Assignee)
                 .Include(d => d.Document)
                 .ToListAsync();
 
@@ -67,14 +67,14 @@ namespace Database.Repositories
                 AssignedDate = a.AssignedDate,
                 IsCompleted = a.IsCompleted,
                 CompletedDate = a.CompletedDate,
-                ServicemenFullName = a.Servicemen.LastName + " " + a.Servicemen.FirstName + " " + a.Servicemen.MiddleName,
+                ServicemenFullName = a.Assignee.LastName + " " + a.Assignee.FirstName + " " + a.Assignee.MiddleName,
             });
         }
 
         public async Task<DocumentAssignment> GetDocumentAssignmentByIdAsync(int id)
         {
             var entity = await _context.DocumentAssignments
-                .Include(s => s.Servicemen)
+                .Include(s => s.Assignee)
                 .Include(d => d.Document)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(ac => ac.Id == id);
@@ -88,7 +88,7 @@ namespace Database.Repositories
                 AssignedDate = entity.AssignedDate,
                 IsCompleted = entity.IsCompleted,
                 CompletedDate = entity.CompletedDate,
-                ServicemenFullName = entity.Servicemen.LastName + " " + entity.Servicemen.FirstName + " " + entity.Servicemen.MiddleName,
+                ServicemenFullName = entity.Assignee.LastName + " " + entity.Assignee.FirstName + " " + entity.Assignee.MiddleName,
             };
         }
 
@@ -96,7 +96,7 @@ namespace Database.Repositories
         {
             var entities = await _context.DocumentAssignments
                 .AsNoTracking()
-                .Include(s => s.Servicemen)
+                .Include(s => s.Assignee)
                 .Include(d => d.Document)
                 .Where(a => a.AssigneeId == assigneeId)
                 .ToListAsync();
@@ -110,7 +110,7 @@ namespace Database.Repositories
                 AssignedDate = a.AssignedDate,
                 IsCompleted = a.IsCompleted,
                 CompletedDate = a.CompletedDate,
-                ServicemenFullName = a.Servicemen.LastName + " " + a.Servicemen.FirstName + " " + a.Servicemen.MiddleName,
+                ServicemenFullName = a.Assignee.LastName + " " + a.Assignee.FirstName + " " + a.Assignee.MiddleName,
             });
         }
 
@@ -118,7 +118,7 @@ namespace Database.Repositories
         {
             var entities = await _context.DocumentAssignments
                 .AsNoTracking()
-                .Include(s => s.Servicemen)
+                .Include(s => s.Assignee)
                 .Include(d => d.Document)
                 .Where(a => a.DocumentId == documentId)
                 .ToListAsync();
@@ -132,7 +132,7 @@ namespace Database.Repositories
                 AssignedDate = a.AssignedDate,
                 IsCompleted = a.IsCompleted,
                 CompletedDate = a.CompletedDate,
-                ServicemenFullName = a.Servicemen.LastName + " " + a.Servicemen.FirstName + " " + a.Servicemen.MiddleName,
+                ServicemenFullName = a.Assignee.LastName + " " + a.Assignee.FirstName + " " + a.Assignee.MiddleName,
             });
         }
 

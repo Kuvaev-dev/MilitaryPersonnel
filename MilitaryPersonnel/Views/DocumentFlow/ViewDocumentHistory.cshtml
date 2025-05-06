@@ -16,53 +16,36 @@
     }
 </style>
 
-<div class="card card-default col-md-12">
-    <div class="card-header">
+<div class="form-horizontal">
+    <div class="col-md-12">
         <h2 class="text-danger">@ViewBag.Message</h2>
         <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive bootgrid">
-            <h3>Документ: @ViewBag.DocumentFlow.Title</h3>
+
+        <div class="table-responsive">
+            <h3>Document: @ViewBag.DocumentFlow.Title</h3>
             <table class="table table-striped table-bordered table-hover" id="dataTable">
                 <thead>
                     <tr>
-                        <th>
-                            Serviceman Full Name
-                        </th>
-                        <th>
-                            Assigned Date
-                        </th>
-                        <th>
-                            Is Completed
-                        </th>
-                        <th>
-                            Completed Date
-                        </th>
+                        <th>Serviceman Full Name</th>
+                        <th>Assigned Date</th>
+                        <th>Is Completed</th>
+                        <th>Completed Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ServicemenFullName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AssignedDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IsCompleted)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CompletedDate)
-                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.ServicemenFullName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.AssignedDate)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IsCompleted)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CompletedDate)</td>
                         </tr>
                     }
                 </tbody>
             </table>
             <div class="form-group">
-                @Html.ActionLink("Назад до списку", "DocumentFlow", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Back to List", "DocumentFlow", null, new { @class = "btn btn-default" })
             </div>
         </div>
     </div>
@@ -72,7 +55,7 @@
     $(document).ready(function () {
         $('#dataTable').DataTable({
             "columnDefs": [{ "orderable": false, "targets": [0, 1, 2, 3] }],
-            "lengthMenu": [[5, 10, 25, 50, 75, 100, 150, 200, -1], [5, 10, 25, 50, 75, 100, 150, 200, "All"]],
+            "lengthMenu": [[5, 10, 25, 50, 75, 100, 150, 200, -1], [5, 10, 25, 50, 75, 100, 150, 200, "All"]]
         });
     });
 </script>

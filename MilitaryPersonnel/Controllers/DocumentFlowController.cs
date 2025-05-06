@@ -15,12 +15,12 @@ namespace MilitaryPersonnel.Controllers
         public DocumentFlowController(
             IDocumentFlowRepository documentFlowRepository,
             IDocumentTypeRepository documentTypeRepository,
-            IDocumentStatusRepository documentStatusesRepository,
+            IDocumentStatusRepository documentStatusRepository,
             IServicemanRepository servicemanRepository)
         {
             _documentFlowRepository = documentFlowRepository;
             _documentTypeRepository = documentTypeRepository;
-            _documentStatusRepository = documentStatusesRepository;
+            _documentStatusRepository = documentStatusRepository;
             _servicemanRepository = servicemanRepository;
         }
 
@@ -33,12 +33,12 @@ namespace MilitaryPersonnel.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Помилка при отриманні документів: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error retrieving documents: {ex.Message}";
                 return RedirectToAction("Index");
             }
         }
 
-        public async Task<IActionResult> CreateDocumentFlow()
+        public async Task<IActionResult> Create()
         {
             try
             {
@@ -47,43 +47,45 @@ namespace MilitaryPersonnel.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Помилка при завантаженні форми: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error loading form: {ex.Message}";
                 return RedirectToAction("Index");
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateDocumentFlow(DocumentFlow model)
+        public async Task<IActionResult> Create(DocumentFlow model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     model.CreatedDate = DateTime.Now;
-                    await _documentFlowRepository.AddDocumentFLowAsync(model);
-                    TempData["SuccessMessage"] = "Документ успішно створено.";
-                    return RedirectToAction("Index");
+                    var newId = await _documentFlowRepository.AddDocumentFLowAsync(model);
+                    var documentType = (await _documentTypeRepository.GetAllDocumentTypesAsync())
+                        ?.FirstOrDefault(dt => dt.Id == model.DocumentTypeId);
+                    TempData["SuccessMessage"] = "Document successfully created.";
+                    return RedirectToAction("RenderDocument", "Document", new { id = newId, type = documentType?.TypeName });
                 }
 
-                await PopulateDropdowns();
+                await PopulateDropdowns(model);
                 return View(model);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Помилка при створенні документа: {ex.Message}";
-                await PopulateDropdowns();
+                TempData["ErrorMessage"] = $"Error creating document: {ex.Message}";
+                await PopulateDropdowns(model);
                 return View(model);
             }
         }
 
-        public async Task<IActionResult> EditDocumentFlow(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             try
             {
                 if (!id.HasValue)
                 {
-                    TempData["ErrorMessage"] = "Ідентифікатор документа не вказано.";
+                    TempData["ErrorMessage"] = "Document identifier not specified.";
                     return RedirectToAction("Index");
                 }
 
@@ -98,21 +100,21 @@ namespace MilitaryPersonnel.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Помилка при редагуванні документа: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error editing document: {ex.Message}";
                 return RedirectToAction("Index");
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditDocumentFlow(DocumentFlow model)
+        public async Task<IActionResult> Edit(DocumentFlow model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     await _documentFlowRepository.UpdateDocumentFLowAsync(model);
-                    TempData["SuccessMessage"] = "Документ успішно оновлено.";
+                    TempData["SuccessMessage"] = "Document successfully updated.";
                     return RedirectToAction("Index");
                 }
 
@@ -121,19 +123,19 @@ namespace MilitaryPersonnel.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Помилка при оновленні документа: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error updating document: {ex.Message}";
                 await PopulateDropdowns(model);
                 return View(model);
             }
         }
 
-        public async Task<IActionResult> DeleteDocumentFlow(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             try
             {
                 if (!id.HasValue)
                 {
-                    TempData["ErrorMessage"] = "Ідентифікатор документа не вказано.";
+                    TempData["ErrorMessage"] = "Document identifier not specified.";
                     return RedirectToAction("Index");
                 }
 
@@ -147,33 +149,33 @@ namespace MilitaryPersonnel.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Помилка при видаленні документа: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error deleting document: {ex.Message}";
                 return RedirectToAction("Index");
             }
         }
 
         [HttpPost, ActionName("DeleteDocumentFlow")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteDocumentFlowConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             try
             {
                 await _documentFlowRepository.DeleteDocumentFLowAsync(id);
-                TempData["SuccessMessage"] = "Документ успішно видалено.";
+                TempData["SuccessMessage"] = "Document successfully deleted.";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Помилка при видаленні документа: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error deleting document: {ex.Message}";
                 return RedirectToAction("EP500", "EP");
             }
         }
 
-        private async Task PopulateDropdowns(DocumentFlow model = null)
+        private async Task PopulateDropdowns(DocumentFlow? model = null)
         {
-            var documentTypes = await _documentTypeRepository.GetAllDocumentTypesAsync();
-            var documentStatuses = await _documentStatusRepository.GetAllDocumentStatusesAsync();
-            var servicemen = await _servicemanRepository.GetAllServicemenAsync();
+            var documentTypes = await _documentTypeRepository.GetAllDocumentTypesAsync() ?? new List<DocumentType>();
+            var documentStatuses = await _documentStatusRepository.GetAllDocumentStatusesAsync() ?? new List<DocumentStatus>();
+            var servicemen = await _servicemanRepository.GetAllServicemenAsync() ?? new List<Serviceman>();
 
             ViewBag.DocumentTypeList = new SelectList(documentTypes, "Id", "TypeName", model?.DocumentTypeId);
             ViewBag.StatusList = new SelectList(documentStatuses, "Id", "StatusName", model?.StatusId);
@@ -183,6 +185,12 @@ namespace MilitaryPersonnel.Controllers
                     s.Id,
                     FullName = $"{s.LastName} {s.FirstName} {s.MiddleName}"
                 }), "Id", "FullName", model?.CreatedById);
+            ViewBag.ServicemanList = new SelectList(
+                servicemen.Select(s => new
+                {
+                    s.Id,
+                    FullName = $"{s.LastName} {s.FirstName} {s.MiddleName}"
+                }), "Id", "FullName", model?.ServicemanId);
         }
     }
 }

@@ -55,7 +55,9 @@ public partial class Servicemen
 
     public virtual ICollection<DocumentAssignments> DocumentAssignments { get; set; } = new List<DocumentAssignments>();
 
-    public virtual ICollection<DocumentFlow> DocumentFlow { get; set; } = new List<DocumentFlow>();
+    public virtual ICollection<DocumentFlow> DocumentFlowCreatedBy { get; set; } = new List<DocumentFlow>();
+
+    public virtual ICollection<DocumentFlow> DocumentFlowServiceman { get; set; } = new List<DocumentFlow>();
 
     public virtual ICollection<Documents> Documents { get; set; } = new List<Documents>();
 

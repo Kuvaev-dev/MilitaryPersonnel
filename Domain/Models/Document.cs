@@ -9,16 +9,18 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Serviceman ID is required.")]
         [Range(1, int.MaxValue, ErrorMessage = "Serviceman ID must be a positive integer.")]
-        public int? ServicemanId { get; set; }
+        public int ServicemanId { get; set; }
+
+        [Display(Name = "Serviceman")]
         public string? ServicemenFullName { get; set; }
 
         [Required(ErrorMessage = "Document type is required.")]
         [StringLength(100, ErrorMessage = "Document type cannot exceed 100 characters.")]
-        public string? DocumentType { get; set; }
+        public string DocumentType { get; set; }
 
         [Required(ErrorMessage = "Document number is required.")]
         [StringLength(50, ErrorMessage = "Document number cannot exceed 50 characters.")]
-        public string? DocumentNumber { get; set; }
+        public string DocumentNumber { get; set; }
 
         [Required(ErrorMessage = "Issue date is required.")]
         [DataType(DataType.Date)]

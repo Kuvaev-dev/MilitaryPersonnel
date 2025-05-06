@@ -19,6 +19,8 @@ public partial class DocumentFlow
 
     public int StatusId { get; set; }
 
+    public int? ServicemanId { get; set; }
+
     public virtual Servicemen CreatedBy { get; set; } = null!;
 
     public virtual ICollection<DocumentAssignments> DocumentAssignments { get; set; } = new List<DocumentAssignments>();
@@ -26,6 +28,8 @@ public partial class DocumentFlow
     public virtual DocumentTypes DocumentType { get; set; } = null!;
 
     public virtual ICollection<Resolutions> Resolutions { get; set; } = new List<Resolutions>();
+
+    public virtual Servicemen? Serviceman { get; set; }
 
     public virtual DocumentStatuses Status { get; set; } = null!;
 }
