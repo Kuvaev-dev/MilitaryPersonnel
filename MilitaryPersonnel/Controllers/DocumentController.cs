@@ -55,6 +55,26 @@ namespace MilitaryPersonnel.Controllers
             }
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            try
+            {
+                if (!id.HasValue)
+                    return RedirectToAction("Index", "Document");
+
+                var discharge = await _documentRepository.GetDocumentByIdAsync(id.Value);
+                if (discharge == null)
+                    return RedirectToAction("EP404", "EP");
+
+                return View(discharge);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return RedirectToAction("Index", "Document");
+            }
+        }
+
         public async Task<IActionResult> Create()
         {
             await PopulateDropdowns();
@@ -126,80 +146,6 @@ namespace MilitaryPersonnel.Controllers
                 TempData["ErrorMessage"] = $"Error: {ex.Message}";
                 await PopulateDropdowns(model);
                 return View(model);
-            }
-        }
-
-        public async Task<IActionResult> Delete(int? id)
-        {
-            try
-            {
-                if (!id.HasValue)
-                    return RedirectToAction("Index");
-
-                var document = await _documentRepository.GetDocumentByIdAsync(id.Value);
-                if (document == null)
-                    return NotFound();
-
-                return View(document);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Error: {ex.Message}";
-                return RedirectToAction("Index");
-            }
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            try
-            {
-                await _documentRepository.DeleteDocumentAsync(id);
-                TempData["SuccessMessage"] = "Document successfully deleted.";
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Error: {ex.Message}";
-                return RedirectToAction("Index");
-            }
-        }
-
-        public async Task<IActionResult> Print(int? id)
-        {
-            try
-            {
-                if (!id.HasValue)
-                    return RedirectToAction("Index");
-
-                var document = await _documentRepository.GetDocumentByIdAsync(id.Value);
-                if (document == null)
-                    return NotFound();
-
-                var model = await _documentFlowRepository.GetDocumentFLowByServicemanIdAsync(document.ServicemanId);
-                if (model == null)
-                    return NotFound();
-
-                return document.DocumentType switch
-                {
-                    "Резолюція про затвердження" => View("ApprovalResolution", model),
-                    "Повідомлення про призначення" => View("AssignmentNotice", model),
-                    "Подання на нагородження" => View("AwardRecommendation", model),
-                    "Наказ про звільнення" => View("DischargeOrder", model),
-                    "Заява на відпустку" => View("LeaveRequest", model),
-                    "Медична довідка" => View("MedicalCertificate", model),
-                    "Список мобілізації" => View("MobilizationList", model),
-                    "Наказ щодо особового складу" => View("OrderPersonnel", model),
-                    "Посвідчення про вислугу" => View("ServiceCertificate", model),
-                    "Звіт про навчання" => View("TrainingReport", model),
-                    _ => NotFound()
-                };
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Error: {ex.Message}";
-                return RedirectToAction("Index");
             }
         }
     }

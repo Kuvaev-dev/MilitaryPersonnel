@@ -17,6 +17,10 @@ namespace Domain.Models
 
         [DataType(DataType.Date)]
         public DateOnly? EndDate { get; set; }
+
+        [Required(ErrorMessage = "Serviceman Id is required.")]
+        public int ServicemanId { get; set; }
+
         public string? ServicemenFullName { get; set; }
     }
 }

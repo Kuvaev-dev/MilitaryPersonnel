@@ -45,7 +45,7 @@ namespace Database.Repositories
             return true;
         }
 
-        public async Task<IEnumerable<MobilizationListEntry>> GetMobilizationListEntriesAsync(int mobilizationListId)
+        public async Task<IEnumerable<MobilizationListEntry>> GetMobilizationListEntriesAsync()
         {
             var entities = await _context.MobilizationListEntries
                 .AsNoTracking()

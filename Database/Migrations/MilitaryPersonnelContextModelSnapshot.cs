@@ -237,6 +237,12 @@ namespace Database.Migrations
                     b.Property<int>("DocumentTypeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MilitaryUnitId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ServicemanId")
+                        .HasColumnType("int");
+
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 
@@ -251,6 +257,10 @@ namespace Database.Migrations
                     b.HasIndex("CreatedById");
 
                     b.HasIndex("DocumentTypeId");
+
+                    b.HasIndex("MilitaryUnitId");
+
+                    b.HasIndex("ServicemanId");
 
                     b.HasIndex("StatusId");
 
@@ -1282,7 +1292,7 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Database.Models.DocumentAssignments", b =>
                 {
-                    b.HasOne("Database.Models.Servicemen", "Servicemen")
+                    b.HasOne("Database.Models.Servicemen", "Assignee")
                         .WithMany("DocumentAssignments")
                         .HasForeignKey("AssigneeId")
                         .IsRequired()
@@ -1294,15 +1304,15 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasConstraintName("FK__DocumentA__Docum__0E6E26BF");
 
-                    b.Navigation("Document");
+                    b.Navigation("Assignee");
 
-                    b.Navigation("Servicemen");
+                    b.Navigation("Document");
                 });
 
             modelBuilder.Entity("Database.Models.DocumentFlow", b =>
                 {
                     b.HasOne("Database.Models.Servicemen", "CreatedBy")
-                        .WithMany("DocumentFlow")
+                        .WithMany("DocumentFlowCreatedBy")
                         .HasForeignKey("CreatedById")
                         .IsRequired()
                         .HasConstraintName("FK__DocumentF__Creat__08B54D69");
@@ -1313,6 +1323,16 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasConstraintName("FK__DocumentF__Docum__07C12930");
 
+                    b.HasOne("Database.Models.MilitaryUnits", "MilitaryUnit")
+                        .WithMany("DocumentFlow")
+                        .HasForeignKey("MilitaryUnitId")
+                        .HasConstraintName("FK_DocumentFlow_MilitaryUnits");
+
+                    b.HasOne("Database.Models.Servicemen", "Serviceman")
+                        .WithMany("DocumentFlowServiceman")
+                        .HasForeignKey("ServicemanId")
+                        .HasConstraintName("FK_DocumentFlow_Servicemen");
+
                     b.HasOne("Database.Models.DocumentStatuses", "Status")
                         .WithMany("DocumentFlow")
                         .HasForeignKey("StatusId")
@@ -1322,6 +1342,10 @@ namespace Database.Migrations
                     b.Navigation("CreatedBy");
 
                     b.Navigation("DocumentType");
+
+                    b.Navigation("MilitaryUnit");
+
+                    b.Navigation("Serviceman");
 
                     b.Navigation("Status");
                 });
@@ -1671,6 +1695,8 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Database.Models.MilitaryUnits", b =>
                 {
+                    b.Navigation("DocumentFlow");
+
                     b.Navigation("Subdivisions");
                 });
 
@@ -1716,7 +1742,9 @@ namespace Database.Migrations
 
                     b.Navigation("DocumentAssignments");
 
-                    b.Navigation("DocumentFlow");
+                    b.Navigation("DocumentFlowCreatedBy");
+
+                    b.Navigation("DocumentFlowServiceman");
 
                     b.Navigation("Documents");
 

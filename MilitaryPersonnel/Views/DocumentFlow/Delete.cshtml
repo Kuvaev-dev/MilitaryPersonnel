@@ -28,6 +28,14 @@
                     <dd class="form-control-static">@Html.DisplayFor(model => model.CreatedBy)</dd>
                 </div>
                 <div class="form-group">
+                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ServicemanFullName)</dt>
+                    <dd class="form-control-static">@Html.DisplayFor(model => model.ServicemanFullName)</dd>
+                </div>
+                <div class="form-group">
+                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.MilitaryUnit)</dt>
+                    <dd class="form-control-static">@Html.DisplayFor(model => model.MilitaryUnit)</dd>
+                </div>
+                <div class="form-group">
                     <dt class="col-sm-2">@Html.DisplayNameFor(model => model.CreatedDate)</dt>
                     <dd class="form-control-static">@Html.DisplayFor(model => model.CreatedDate)</dd>
                 </div>
@@ -38,7 +46,7 @@
             </dl>
             <div class="form-group">
                 <input type="submit" value="Delete" class="btn btn-danger" />
-                @Html.ActionLink("Back to List", "DocumentFlow", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
             </div>
         </div>
     </div>

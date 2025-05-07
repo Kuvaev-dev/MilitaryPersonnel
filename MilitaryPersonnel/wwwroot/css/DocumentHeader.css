@@ -1,0 +1,28 @@
+﻿body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14pt;
+    line-height: 1.5;
+    margin: 15mm 10mm 10mm 20mm;
+}
+
+.document-header {
+    text-align: center;
+    margin-bottom: 15mm;
+}
+
+    .document-header p {
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .document-header h1 {
+        margin: 10mm 0 5mm 0;
+        font-size: 16pt;
+        text-transform: uppercase;
+    }
+
+    .document-header h2 {
+        margin: 0;
+        font-size: 14pt;
+        font-weight: normal;
+    }

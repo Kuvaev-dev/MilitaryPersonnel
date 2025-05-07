@@ -12,8 +12,7 @@ namespace Domain.Models
         public string SubdivisionName { get; set; } = null!;
 
         [Required(ErrorMessage = "Military unit ID is required.")]
-        [Range(1, int.MaxValue, ErrorMessage = "Military unit ID must be a positive integer.")]
         public int MilitaryUnitId { get; set; }
-        public string MilitaryUnit { get; set; } = null!;
+        public string? MilitaryUnit { get; set; } = null!;
     }
 }

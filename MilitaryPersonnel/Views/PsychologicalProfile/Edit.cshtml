@@ -17,7 +17,7 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ServicemanId, "Select New Serviceman", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ServicemanId, "Select New Serviceman", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.DropDownListFor(
                          model => model.ServicemanId,
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProfileDescription, "Enter New Profile Description", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProfileDescription, "Enter New Profile Description", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.TextAreaFor(model => model.ProfileDescription, new { @class = "form-control", rows = "5" })
                 @Html.ValidationMessageFor(model => model.ProfileDescription, "", new { @class = "text-danger" })
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AssessmentDate, "Enter New Assessment Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AssessmentDate, "Enter New Assessment Date", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.AssessmentDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                 @Html.ValidationMessageFor(model => model.AssessmentDate, "", new { @class = "text-danger" })

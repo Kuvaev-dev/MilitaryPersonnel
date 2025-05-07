@@ -7,40 +7,15 @@
     Layout = null;
 }
 
-<style>
-    body {
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 14pt;
-        line-height: 1.5;
-        margin: 20mm 10mm 20mm 30mm;
-    }
-
-    .header {
-        text-align: center;
-        margin-bottom: 20mm;
-    }
-
-    .content {
-        text-align: justify;
-    }
-
-    .footer {
-        margin-top: 20mm;
-    }
-
-    .signature {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10mm;
-    }
-</style>
+<link href="~/css/DocumentContent.css" rel="stylesheet" />
 
 @await Html.PartialAsync("_DocumentHeader", Model)
 
 <div class="content">
-    <p>На підставі: @Model.Content</p>
-    <p>Тип документа: @Model.DocumentType</p>
-    <p>НАКАЗУЮ:</p>
+    <p>На підставі:</p>
+    <p style="text-indent: 10mm;">@Model.Content</p>
+    <p style="margin-top: 10mm;">Тип документа: @Model.DocumentType</p>
+    <p style="margin-top: 10mm;">НАКАЗУЮ:</p>
     <ol>
         <li>Виконати дії щодо особового складу для @Model.ServicemanFullName.</li>
         <li>Забезпечити виконання наказу з @(Model.CreatedDate?.ToString("dd.MM.yyyy")).</li>
@@ -51,10 +26,13 @@
     <div class="signature">
         <div>
             <p>Командир військової частини</p>
-            <p>_____________________ @Model.CreatedBy</p>
+            <p style="margin-top: 10mm;">________________ @Model.CreatedBy</p>
         </div>
-        <div>
-            <p>Дата: @(Model.CreatedDate?.ToString("dd.MM.yyyy"))</p>
+        <div style="text-align: right;">
+            <p>"@Model.CreatedDate?.ToString("dd")" @Model.CreatedDate?.ToString("MMMM") @Model.CreatedDate?.ToString("yyyy") р.</p>
+            <p>(дата)</p>
         </div>
     </div>
 </div>
+
+<button class="btn btn-secondary print-button" type="button" onclick="window.print();">Друк</button>

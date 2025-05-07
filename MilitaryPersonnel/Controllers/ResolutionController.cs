@@ -2,19 +2,23 @@
 using Domain.RepositoryAccess;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Database.Context;
 
 namespace MilitaryPersonnel.Controllers
 {
     public class ResolutionController : Controller
     {
         private readonly IResolutionRepository _resolutionRepository;
-        private readonly MilitaryPersonnelContext _context;
+        private readonly IDocumentFlowRepository _documentFlowRepository;
+        private readonly IServicemanRepository _servicemanRepository;
 
-        public ResolutionController(IResolutionRepository resolutionRepository, MilitaryPersonnelContext context)
+        public ResolutionController(
+            IResolutionRepository resolutionRepository,
+            IDocumentFlowRepository documentFlowRepository,
+            IServicemanRepository servicemanRepository)
         {
             _resolutionRepository = resolutionRepository;
-            _context = context;
+            _documentFlowRepository = documentFlowRepository;
+            _servicemanRepository = servicemanRepository;
         }
 
         // GET: Resolution
@@ -55,21 +59,22 @@ namespace MilitaryPersonnel.Controllers
 
         private async Task PopulateViewBag()
         {
-            ViewBag.DocumentList = await _context.Documents
-                    .Select(d => new
-                    {
-                        DocumentId = d.Id,
-                        DocumentTitle = d.DocumentNumber
-                    })
-                    .ToListAsync();
+            var documentFlows = await _documentFlowRepository.GetAllDocumentFLowsAsync();
+            var authors = await _servicemanRepository.GetAllServicemenAsync();
 
-            ViewBag.AuthorList = await _context.Servicemen
+            ViewBag.DocumentList = documentFlows
+                .Select(d => new
+                {
+                    DocumentFlowId = d.Id,
+                    DocumentFlowTitle = d.Title
+                }).ToList();
+
+            ViewBag.AuthorList = authors
                 .Select(s => new
                 {
                     AuthorId = s.Id,
                     AuthorFullName = s.LastName + " " + s.FirstName + " " + s.MiddleName
-                })
-                .ToListAsync();
+                }).ToList();
         }
 
         // GET: Resolution/Create

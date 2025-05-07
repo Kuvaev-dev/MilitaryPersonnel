@@ -20,9 +20,7 @@
 
 <div class="card card-default col-md-12">
     <div class="card-header">
-        <h3>Mobilization List: @mobilizationListName</h3>
-        @Html.ActionLink("Add Entry", "Create", new { mobilizationListId = mobilizationListId }, new { @style = "float:left;", @class = "btn btn-success" })
-        @Html.ActionLink("Back to Mobilization Lists", "Index", "MobilizationList", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Add Entry", "Create", "MobilizationListEntry", null, new { @style = "float:left;", @class = "btn btn-success" })
         <h2 class="text-danger">@ViewBag.Message</h2>
         <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
     </div>

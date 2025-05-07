@@ -21,11 +21,15 @@ public partial class DocumentFlow
 
     public int? ServicemanId { get; set; }
 
+    public int? MilitaryUnitId { get; set; }
+
     public virtual Servicemen CreatedBy { get; set; } = null!;
 
     public virtual ICollection<DocumentAssignments> DocumentAssignments { get; set; } = new List<DocumentAssignments>();
 
     public virtual DocumentTypes DocumentType { get; set; } = null!;
+
+    public virtual MilitaryUnits? MilitaryUnit { get; set; }
 
     public virtual ICollection<Resolutions> Resolutions { get; set; } = new List<Resolutions>();
 

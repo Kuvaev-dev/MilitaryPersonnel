@@ -1,682 +1,715 @@
 USE [MilitaryPersonnelAIS]
 GO
+SET IDENTITY_INSERT [dbo].[DocumentTypes] ON 
 
--- Вставка до MilitaryUnits
-INSERT INTO MilitaryUnits (UnitName) VALUES
-(N'Бригада "Громовиця"'),
-(N'Дивізія "Залізний Щит"'),
-(N'Полк "Небесний Яструб"'),
-(N'Корпус "Пустельний Скорпіон"'),
-(N'Батальйон "Морозний Вовк"'),
-(N'Командування "Зоряне Сяйво"'),
-(N'Сили "Багряний Щит"'),
-(N'Гвардія "Обсидіан"'),
-(N'Підрозділ "Срібний Спис"'),
-(N'Легіон "Штормовий Вершник"'),
-(N'Ескадрилья "Нічна Тінь"'),
-(N'Група "Золотий Сокіл"'),
-(N'Сили "Затемнення"'),
-(N'Команда "Гадюча Атака"'),
-(N'Мережа Оборони "Аврора"'),
-(N'Авангард "Полум’я"'),
-(N'Фаланга "Титан"');
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (31, N'Резолюція про затвердження')
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (32, N'Повідомлення про призначення')
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (33, N'Подання на нагородження')
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (34, N'Наказ про звільнення')
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (35, N'Заява на відпустку')
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (36, N'Медична довідка')
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (37, N'Список мобілізації')
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (38, N'Наказ щодо особового складу')
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (39, N'Посвідчення про вислугу')
+INSERT [dbo].[DocumentTypes] ([Id], [TypeName]) VALUES (40, N'Звіт про навчання')
+SET IDENTITY_INSERT [dbo].[DocumentTypes] OFF
+GO
+SET IDENTITY_INSERT [dbo].[DocumentStatuses] ON 
 
--- Вставка до Subdivisions
-INSERT INTO Subdivisions (SubdivisionName, MilitaryUnitId) VALUES
-(N'Рота "Альфа"', 1),
-(N'Взвод "Браво"', 1),
-(N'Розвідувальний Загін', 2),
-(N'Тактичні Операції', 2),
-(N'Снайперська Секція', 3),
-(N'Авіаційна Підтримка', 3),
-(N'Логістична Група', 4),
-(N'Медичний Підрозділ', 4),
-(N'Інженерний Корпус', 5),
-(N'Кіберзахист', 5),
-(N'Артилерійська Батарея', 6),
-(N'Сили Спеціального Призначення', 6),
-(N'Розвідувальна Клітина', 7),
-(N'Навчальне Крило', 7),
-(N'Командос', 8),
-(N'Бронетанковий Підрозділ', 8),
-(N'Польові Операції', 9);
+INSERT [dbo].[DocumentStatuses] ([Id], [StatusName]) VALUES (22, N'Чернетка')
+INSERT [dbo].[DocumentStatuses] ([Id], [StatusName]) VALUES (23, N'В очікуванні')
+INSERT [dbo].[DocumentStatuses] ([Id], [StatusName]) VALUES (24, N'Затверджено')
+INSERT [dbo].[DocumentStatuses] ([Id], [StatusName]) VALUES (25, N'Виконано')
+INSERT [dbo].[DocumentStatuses] ([Id], [StatusName]) VALUES (26, N'Відхилено')
+SET IDENTITY_INSERT [dbo].[DocumentStatuses] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MilitaryUnits] ON 
 
--- Вставка до ServiceForms
-INSERT INTO ServiceForms (FormName) VALUES
-(N'Діюча Служба'),
-(N'Резерв'),
-(N'Контрактна Служба'),
-(N'Призов'),
-(N'Доброволець'),
-(N'Національна Гвардія'),
-(N'Спеціальні Операції'),
-(N'Допоміжні Сили'),
-(N'Офіцерський Корпус'),
-(N'Технічна Служба'),
-(N'Медичний Корпус'),
-(N'Логістична Підтримка'),
-(N'Кіберзахист'),
-(N'Авіаційна Служба'),
-(N'Морська Служба'),
-(N'Інструкторська Служба'),
-(N'Ветеран у Відставці');
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (1, N'1-а Механізована Бригада')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (2, N'2-й Танковий Батальйон')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (3, N'Бригада "Громовиця"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (4, N'Дивізія "Залізний Щит"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (5, N'Полк "Небесний Яструб"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (6, N'Корпус "Пустельний Скорпіон"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (7, N'Батальйон "Морозний Вовк"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (8, N'Командування "Зоряне Сяйво"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (9, N'Сили "Багряний Щит"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (10, N'Гвардія "Обсидіан"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (11, N'Підрозділ "Срібний Спис"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (12, N'Легіон "Штормовий Вершник"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (13, N'Ескадрилья "Нічна Тінь"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (14, N'Група "Золотий Сокіл"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (15, N'Сили "Затемнення"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (16, N'Команда "Гадюча Атака"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (17, N'Мережа Оборони "Аврора"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (18, N'Авангард "Полум’я"')
+INSERT [dbo].[MilitaryUnits] ([Id], [UnitName]) VALUES (19, N'Фаланга "Титан"')
+SET IDENTITY_INSERT [dbo].[MilitaryUnits] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Subdivisions] ON 
 
--- Вставка до CivilProfessions
-INSERT INTO CivilProfessions (ProfessionName) VALUES
-(N'Інженер-програміст'),
-(N'Механік'),
-(N'Інженер-будівельник'),
-(N'Фельдшер'),
-(N'Аналітик даних'),
-(N'Вчитель'),
-(N'Електрик'),
-(N'Журналіст'),
-(N'Архітектор'),
-(N'Бухгалтер'),
-(N'Шеф-кухар'),
-(N'Графічний дизайнер'),
-(N'Юрист'),
-(N'Пілот'),
-(N'Біолог'),
-(N'Маркетолог'),
-(N'Керівник будівництва');
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (1, N'1-й взвод', 1)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (2, N'2-й взвод', 1)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (3, N'1-ша рота', 2)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (4, N'Рота "Альфа"', 1)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (5, N'Взвод "Браво"', 1)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (6, N'Розвідувальний Загін', 2)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (7, N'Тактичні Операції', 2)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (8, N'Снайперська Секція', 3)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (9, N'Авіаційна Підтримка', 3)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (10, N'Логістична Група', 4)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (11, N'Медичний Підрозділ', 4)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (12, N'Інженерний Корпус', 5)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (13, N'Кіберзахист', 5)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (14, N'Артилерійська Батарея', 6)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (15, N'Сили Спеціального Призначення', 6)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (16, N'Розвідувальна Клітина', 7)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (17, N'Навчальне Крило', 7)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (18, N'Командос', 8)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (19, N'Бронетанковий Підрозділ', 8)
+INSERT [dbo].[Subdivisions] ([Id], [SubdivisionName], [MilitaryUnitId]) VALUES (20, N'Польові Операції', 9)
+SET IDENTITY_INSERT [dbo].[Subdivisions] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ServiceForms] ON 
 
--- Вставка до MilitarySpecialties
-INSERT INTO MilitarySpecialties (SpecialtyName, Code) VALUES
-(N'Спеціаліст піхоти', N'ПІХ-01'),
-(N'Бойовий медик', N'МЕД-02'),
-(N'Снайпер', N'СНП-03'),
-(N'Експерт з кібербезпеки', N'КІБ-04'),
-(N'Технік авіації', N'АВТ-05'),
-(N'Спеціаліст зі знешкодження вибухівки', N'ЗВБ-06'),
-(N'Аналітик розвідки', N'РОЗ-07'),
-(N'Оператор танка', N'ТНК-08'),
-(N'Артилерист', N'АРТ-09'),
-(N'Оператор зв’язку', N'ЗВЗ-10'),
-(N'Парашутист', N'ПАР-11'),
-(N'Оператор дронів', N'ДРН-12'),
-(N'Координатор логістики', N'ЛОГ-13'),
-(N'Військовий поліцейський', N'ВП-14'),
-(N'Польовий інженер', N'ІНЖ-15'),
-(N'Оператор спецпризначення', N'СПЦ-16'),
-(N'Розвідник', N'РЗВ-17');
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (1, N'Контрактна служба')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (2, N'Строкова служба')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (3, N'Діюча Служба')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (4, N'Резерв')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (5, N'Контрактна Служба')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (6, N'Призов')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (7, N'Доброволець')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (8, N'Національна Гвардія')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (9, N'Спеціальні Операції')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (10, N'Допоміжні Сили')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (11, N'Офіцерський Корпус')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (12, N'Технічна Служба')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (13, N'Медичний Корпус')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (14, N'Логістична Підтримка')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (15, N'Кіберзахист')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (16, N'Авіаційна Служба')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (17, N'Морська Служба')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (18, N'Інструкторська Служба')
+INSERT [dbo].[ServiceForms] ([Id], [FormName]) VALUES (19, N'Ветеран у Відставці')
+SET IDENTITY_INSERT [dbo].[ServiceForms] OFF
+GO
+SET IDENTITY_INSERT [dbo].[CivilProfessions] ON 
 
--- Вставка до Educations
-INSERT INTO Educations (EducationLevel, Institution, Specialty, GraduationYear) VALUES
-(N'Бакалавр', N'Національна академія оборони', N'Військова стратегія', 2015),
-(N'Магістр', N'Технічний університет', N'Комп’ютерні науки', 2018),
-(N'Середня спеціальна', N'Коледж', N'Медсестринство', 2016),
-(N'Бакалавр', N'Державний університет', N'Механічна інженерія', 2019),
-(N'Доктор наук', N'Глобальний інститут', N'Кібербезпека', 2020),
-(N'Бакалавр', N'Авіаційна академія', N'Авіаційна інженерія', 2017),
-(N'Магістр', N'Медична школа', N'Невідкладна медицина', 2021),
-(N'Бакалавр', N'Політехнічний інститут', N'Електротехніка', 2014),
-(N'Середня спеціальна', N'Технікум', N'Автомобільна техніка', 2013),
-(N'Бакалавр', N'Юридична академія', N'Міжнародне право', 2019),
-(N'Магістр', N'Бізнес-школа', N'Управління логістикою', 2020),
-(N'Бакалавр', N'Інститут мистецтв', N'Графічний дизайн', 2016),
-(N'Доктор наук', N'Академія наук', N'Фізика', 2022),
-(N'Бакалавр', N'Інженерний коледж', N'Цивільне будівництво', 2018),
-(N'Магістр', N'Екологічний інститут', N'Екологічні науки', 2019),
-(N'Бакалавр', N'Педагогічний коледж', N'Освіта', 2017),
-(N'Середня спеціальна', N'Кулінарний інститут', N'Кулінарне мистецтво', 2015);
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (1, N'Інженер')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (2, N'Вчитель')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (3, N'Лікар')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (4, N'Інженер-програміст')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (5, N'Механік')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (6, N'Інженер-будівельник')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (7, N'Фельдшер')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (8, N'Аналітик даних')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (9, N'Вчитель')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (10, N'Електрик')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (11, N'Журналіст')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (12, N'Архітектор')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (13, N'Бухгалтер')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (14, N'Шеф-кухар')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (15, N'Графічний дизайнер')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (16, N'Юрист')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (17, N'Пілот')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (18, N'Біолог')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (19, N'Маркетолог')
+INSERT [dbo].[CivilProfessions] ([Id], [ProfessionName]) VALUES (20, N'Керівник будівництва')
+SET IDENTITY_INSERT [dbo].[CivilProfessions] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MilitarySpecialties] ON 
 
--- Вставка до Ranks
-INSERT INTO Ranks (RankName) VALUES
-(N'Рядовий'),
-(N'Єфрейтор'),
-(N'Сержант'),
-(N'Старший сержант'),
-(N'Головний сержант'),
-(N'Молодший лейтенант'),
-(N'Лейтенант'),
-(N'Старший лейтенант'),
-(N'Капітан'),
-(N'Майор'),
-(N'Підполковник'),
-(N'Полковник'),
-(N'Генерал-майор'),
-(N'Генерал-лейтенант'),
-(N'Генерал'),
-(N'Маршал'),
-(N'Прапорщик');
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (1, N'Командир взводу', N'001')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (2, N'Технік-зв?язківець', N'002')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (3, N'Спеціаліст піхоти', N'ПІХ-01')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (4, N'Бойовий медик', N'МЕД-02')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (5, N'Снайпер', N'СНП-03')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (6, N'Експерт з кібербезпеки', N'КІБ-04')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (7, N'Технік авіації', N'АВТ-05')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (8, N'Спеціаліст зі знешкодження вибухівки', N'ЗВБ-06')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (9, N'Аналітик розвідки', N'РОЗ-07')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (10, N'Оператор танка', N'ТНК-08')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (11, N'Артилерист', N'АРТ-09')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (12, N'Оператор зв’язку', N'ЗВЗ-10')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (13, N'Парашутист', N'ПАР-11')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (14, N'Оператор дронів', N'ДРН-12')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (15, N'Координатор логістики', N'ЛОГ-13')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (16, N'Військовий поліцейський', N'ВП-14')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (17, N'Польовий інженер', N'ІНЖ-15')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (18, N'Оператор спецпризначення', N'СПЦ-16')
+INSERT [dbo].[MilitarySpecialties] ([Id], [SpecialtyName], [Code]) VALUES (19, N'Розвідник', N'РЗВ-17')
+SET IDENTITY_INSERT [dbo].[MilitarySpecialties] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Educations] ON 
 
--- Вставка до Positions
-INSERT INTO Positions (PositionName) VALUES
-(N'Стрілець'),
-(N'Медик'),
-(N'Снайпер'),
-(N'Кібероператор'),
-(N'Механік літаків'),
-(N'Спеціаліст зі знешкодження вибухівки'),
-(N'Офіцер розвідки'),
-(N'Командир танка'),
-(N'Оператор артилерії'),
-(N'Зв’язківець'),
-(N'Командир парашутистів'),
-(N'Оператор дронів'),
-(N'Офіцер логістики'),
-(N'Військовий поліцейський'),
-(N'Польовий інженер'),
-(N'Командир взводу'),
-(N'Командир роти');
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (1, N'Бакалавр', N'Київський університет', N'Інженерія', 2018)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (2, N'Магістр', N'Львівський університет', N'Медицина', 2019)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (3, N'Бакалавр', N'Національна академія оборони', N'Військова стратегія', 2015)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (4, N'Магістр', N'Технічний університет', N'Комп’ютерні науки', 2018)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (5, N'Середня спеціальна', N'Коледж', N'Медсестринство', 2016)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (6, N'Бакалавр', N'Державний університет', N'Механічна інженерія', 2019)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (7, N'Доктор наук', N'Глобальний інститут', N'Кібербезпека', 2020)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (8, N'Бакалавр', N'Авіаційна академія', N'Авіаційна інженерія', 2017)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (9, N'Магістр', N'Медична школа', N'Невідкладна медицина', 2021)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (10, N'Бакалавр', N'Політехнічний інститут', N'Електротехніка', 2014)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (11, N'Середня спеціальна', N'Технікум', N'Автомобільна техніка', 2013)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (12, N'Бакалавр', N'Юридична академія', N'Міжнародне право', 2019)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (13, N'Магістр', N'Бізнес-школа', N'Управління логістикою', 2020)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (14, N'Бакалавр', N'Інститут мистецтв', N'Графічний дизайн', 2016)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (15, N'Доктор наук', N'Академія наук', N'Фізика', 2022)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (16, N'Бакалавр', N'Інженерний коледж', N'Цивільне будівництво', 2018)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (17, N'Магістр', N'Екологічний інститут', N'Екологічні науки', 2019)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (18, N'Бакалавр', N'Педагогічний коледж', N'Освіта', 2017)
+INSERT [dbo].[Educations] ([Id], [EducationLevel], [Institution], [Specialty], [GraduationYear]) VALUES (19, N'Середня спеціальна', N'Кулінарний інститут', N'Кулінарне мистецтво', 2015)
+SET IDENTITY_INSERT [dbo].[Educations] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Positions] ON 
 
--- Вставка до CharacterTraits
-INSERT INTO CharacterTraits (TraitName) VALUES
-(N'Дисциплінований'),
-(N'Сміливий'),
-(N'Аналітичний'),
-(N'Емпатійний'),
-(N'Стійкий'),
-(N'Рішучий'),
-(N'Командний'),
-(N'Інноваційний'),
-(N'Вірний'),
-(N'Адаптивний'),
-(N'Зосереджений'),
-(N'Етичний'),
-(N'Комунікабельний'),
-(N'Стратегічний'),
-(N'Надійний'),
-(N'Проактивний'),
-(N'Спокійний');
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (1, N'Командир відділення')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (2, N'Механік-водій')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (3, N'Стрілець')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (4, N'Медик')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (5, N'Снайпер')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (6, N'Кібероператор')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (7, N'Механік літаків')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (8, N'Спеціаліст зі знешкодження вибухівки')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (9, N'Офіцер розвідки')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (10, N'Командир танка')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (11, N'Оператор артилерії')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (12, N'Зв’язківець')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (13, N'Командир парашутистів')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (14, N'Оператор дронів')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (15, N'Офіцер логістики')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (16, N'Військовий поліцейський')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (17, N'Польовий інженер')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (18, N'Командир взводу')
+INSERT [dbo].[Positions] ([Id], [PositionName]) VALUES (19, N'Командир роти')
+SET IDENTITY_INSERT [dbo].[Positions] OFF
+GO
+SET IDENTITY_INSERT [dbo].[CharacterTraits] ON 
 
--- Вставка до ServiceAttitudes
-INSERT INTO ServiceAttitudes (AttitudeDescription) VALUES
-(N'Високомотивований'),
-(N'Відданий'),
-(N'Професійний'),
-(N'Орієнтований на команду'),
-(N'Керований обов’язком'),
-(N'Інноваційний підхід'),
-(N'Дисципліноване мислення'),
-(N'Зосереджений на місії'),
-(N'Адаптивний до викликів'),
-(N'Лідерський підхід'),
-(N'Підтримує'),
-(N'Проактивний у завданнях'),
-(N'Стійкий у стресових ситуаціях'),
-(N'Етична поведінка'),
-(N'Прагнення до досконалості'),
-(N'Стратегічний мислитель'),
-(N'Надійний у кризових ситуаціях');
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (1, N'Сумлінність')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (2, N'Рішучість')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (3, N'Дисциплінований')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (4, N'Сміливий')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (5, N'Аналітичний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (6, N'Емпатійний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (7, N'Стійкий')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (8, N'Рішучий')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (9, N'Командний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (10, N'Інноваційний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (11, N'Вірний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (12, N'Адаптивний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (13, N'Зосереджений')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (14, N'Етичний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (15, N'Комунікабельний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (16, N'Стратегічний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (17, N'Надійний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (18, N'Проактивний')
+INSERT [dbo].[CharacterTraits] ([Id], [TraitName]) VALUES (19, N'Спокійний')
+SET IDENTITY_INSERT [dbo].[CharacterTraits] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ServiceAttitudes] ON 
 
--- Вставка до ServiceStatuses
-INSERT INTO ServiceStatuses (StatusName) VALUES
-(N'Активний'),
-(N'Резерв'),
-(N'У відпустці'),
-(N'Звільнений'),
-(N'На пенсії'),
-(N'На навчанні'),
-(N'Відряджений'),
-(N'Медична відпустка'),
-(N'Відсторонений'),
-(N'Очікує перевірки'),
-(N'Поранений'),
-(N'На завданні'),
-(N'Очікує призначення'),
-(N'Тимчасово відсторонений'),
-(N'Переведений'),
-(N'На стажуванні'),
-(N'Відстежується');
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (1, N'Відповідальний')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (2, N'Потребує додаткового нагляду')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (3, N'Високомотивований')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (4, N'Відданий')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (5, N'Професійний')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (6, N'Орієнтований на команду')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (7, N'Керований обов’язком')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (8, N'Інноваційний підхід')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (9, N'Дисципліноване мислення')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (10, N'Зосереджений на місії')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (11, N'Адаптивний до викликів')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (12, N'Лідерський підхід')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (13, N'Підтримує')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (14, N'Проактивний у завданнях')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (15, N'Стійкий у стресових ситуаціях')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (16, N'Етична поведінка')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (17, N'Прагнення до досконалості')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (18, N'Стратегічний мислитель')
+INSERT [dbo].[ServiceAttitudes] ([Id], [AttitudeDescription]) VALUES (19, N'Надійний у кризових ситуаціях')
+SET IDENTITY_INSERT [dbo].[ServiceAttitudes] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ServiceStatuses] ON 
 
--- Вставка до FitnessCategories
-INSERT INTO FitnessCategories (CategoryName) VALUES
-(N'А1'),
-(N'А2'),
-(N'А3'),
-(N'Б1'),
-(N'Б2'),
-(N'Б3'),
-(N'В1'),
-(N'В2'),
-(N'В3'),
-(N'Г1'),
-(N'Г2'),
-(N'Г3'),
-(N'Д1'),
-(N'Д2'),
-(N'Д3'),
-(N'Е1'),
-(N'Е2');
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (1, N'На службі')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (2, N'У відпустці')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (3, N'Звільнений')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (4, N'Активний')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (5, N'Резерв')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (6, N'У відпустці')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (7, N'Звільнений')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (8, N'На пенсії')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (9, N'На навчанні')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (10, N'Відряджений')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (11, N'Медична відпустка')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (12, N'Відсторонений')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (13, N'Очікує перевірки')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (14, N'Поранений')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (15, N'На завданні')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (16, N'Очікує призначення')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (17, N'Тимчасово відсторонений')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (18, N'Переведений')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (19, N'На стажуванні')
+INSERT [dbo].[ServiceStatuses] ([Id], [StatusName]) VALUES (20, N'Відстежується')
+SET IDENTITY_INSERT [dbo].[ServiceStatuses] OFF
+GO
+SET IDENTITY_INSERT [dbo].[FitnessCategories] ON 
 
--- Вставка до DocumentTypes
-INSERT INTO DocumentTypes (TypeName) VALUES
-(N'Наказ'),
-(N'Рапорт'),
-(N'Довідка'),
-(N'Атестат'),
-(N'Посвідчення'),
-(N'Звіт'),
-(N'Договір'),
-(N'Лист'),
-(N'Протокол'),
-(N'Інструкція'),
-(N'Сертифікат'),
-(N'Журнал'),
-(N'Анкета'),
-(N'Декларація'),
-(N'Медична довідка'),
-(N'Службова записка'),
-(N'Розпорядження');
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (1, N'А - придатний')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (2, N'Б - обмежено придатний')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (3, N'А1')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (4, N'А2')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (5, N'А3')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (6, N'Б1')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (7, N'Б2')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (8, N'Б3')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (9, N'В1')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (10, N'В2')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (11, N'В3')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (12, N'Г1')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (13, N'Г2')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (14, N'Г3')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (15, N'Д1')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (16, N'Д2')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (17, N'Д3')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (18, N'Е1')
+INSERT [dbo].[FitnessCategories] ([Id], [CategoryName]) VALUES (19, N'Е2')
+SET IDENTITY_INSERT [dbo].[FitnessCategories] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Servicemen] ON 
 
--- Вставка до DocumentStatuses
-INSERT INTO DocumentStatuses (StatusName) VALUES
-(N'Новий'),
-(N'На розгляді'),
-(N'Затверджено'),
-(N'Відхилено'),
-(N'Виконано'),
-(N'Архівовано'),
-(N'Скасовано'),
-(N'Очікує підпису'),
-(N'У процесі'),
-(N'Повернуто на доопрацювання'),
-(N'Чорновик'),
-(N'Передано'),
-(N'Прийнято'),
-(N'Відправлено'),
-(N'Очікує перевірки'),
-(N'Завершено'),
-(N'Тимчасово призупинено');
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (1, N'Іван', N'Петренко', N'Олександрович', CAST(N'1995-04-15' AS Date), 1, 1, 1, 1, 1, 1, 1, 1, N'Київ, вул. Хрещатик, 10', N'+380501234567', N'ivan.petrenko@example.com', 1, 1, 1)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (2, N'Олена', N'Коваль', N'Ігорівна', CAST(N'1998-07-22' AS Date), 2, 2, 2, 2, 2, 1, 2, 2, N'Львів, вул. Шевченка, 45', N'+380503334455', N'olena.koval@example.com', 1, 1, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (3, N'Олег', N'Ковальчук', N'Іванович', CAST(N'1995-03-12' AS Date), 1, 1, 1, 1, 1, 1, 1, 1, N'м. Київ, вул. Героїв, 10', N'+380671234567', N'oleg.kovalchuk@gmail.com', 1, 1, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (4, N'Марія', N'Степаненко', N'Олександрівна', CAST(N'1998-07-25' AS Date), 4, 2, 7, 2, 8, 1, 4, 2, N'м. Львів, вул. Свободи, 5', N'+380931234567', N'maria.stepanenko@gmail.com', 1, 2, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (5, N'Іван', N'Петренко', N'Миколайович', CAST(N'1993-11-03' AS Date), 3, 3, 4, 3, 5, 1, 3, 3, N'м. Харків, вул. Миру, 22', N'+380501234567', N'ivan.petrenko@gmail.com', 1, 3, 1)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (6, N'Софія', N'Лисенко', N'Василівна', CAST(N'1997-04-18' AS Date), 5, 4, 5, 4, 10, 1, 5, 4, N'м. Одеса, вул. Морська, 15', N'+380681234567', N'sofia.lysenko@gmail.com', 1, 4, 1)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (7, N'Андрій', N'Бондар', N'Олегович', CAST(N'1994-09-09' AS Date), 6, 5, 6, 5, 6, 1, 6, 5, N'м. Дніпро, вул. Центральна, 7', N'+380961234567', N'andriy.bondar@gmail.com', 1, 5, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (8, N'Юлія', N'Мельник', N'Сергіївна', CAST(N'1996-12-30' AS Date), 7, 6, 8, 6, 7, 1, 7, 6, N'м. Вінниця, вул. Соборна, 12', N'+380631234567', N'yulia.melnyk@gmail.com', 1, 6, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (9, N'Максим', N'Шевченко', N'Вікторович', CAST(N'1992-01-15' AS Date), 8, 7, 9, 7, 13, 1, 8, 7, N'м. Запоріжжя, вул. Перемоги, 20', N'+380991234567', N'maksym.shevchenko@gmail.com', 1, 7, 1)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (10, N'Олена', N'Ткаченко', N'Павлівна', CAST(N'1999-06-22' AS Date), 9, 8, 10, 8, 16, 1, 9, 8, N'м. Черкаси, вул. Лісова, 8', N'+380661234567', N'olena.tkachenko@gmail.com', 1, 8, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (11, N'Віталій', N'Кравець', N'Олексійович', CAST(N'1991-08-04' AS Date), 10, 9, 11, 9, 11, 1, 10, 9, N'м. Полтава, вул. Європейська, 3', N'+380951234567', N'vitaliy.kravets@gmail.com', 1, 9, 1)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (12, N'Анна', N'Гнатюк', N'Ігорівна', CAST(N'1997-02-28' AS Date), 11, 10, 12, 10, 12, 1, 11, 10, N'м. Житомир, вул. Київська, 14', N'+380971234567', N'anna.gnatyuk@gmail.com', 1, 10, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (13, N'Роман', N'Дорошенко', N'Степанович', CAST(N'1993-05-17' AS Date), 12, 11, 13, 11, 14, 1, 12, 11, N'м. Суми, вул. Харківська, 9', N'+380981234567', N'roman.doroshenko@gmail.com', 1, 11, 1)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (14, N'Катерина', N'Романенко', N'Андріївна', CAST(N'1998-10-11' AS Date), 13, 12, 14, 12, 15, 1, 13, 12, N'м. Чернігів, вул. Шевченка, 6', N'+380921234567', N'kateryna.romanenko@gmail.com', 1, 12, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (15, N'Дмитро', N'Клименко', N'Володимирович', CAST(N'1994-03-07' AS Date), 14, 13, 15, 13, 17, 1, 14, 13, N'м. Хмельницький, вул. Подільська, 11', N'+380931234567', N'dmytro.klymenko@gmail.com', 1, 13, 1)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (16, N'Наталія', N'Савчук', N'Михайлівна', CAST(N'1996-07-19' AS Date), 15, 14, 16, 14, 9, 1, 15, 14, N'м. Рівне, вул. Соборна, 4', N'+380941234567', N'natalia.savchuk@gmail.com', 1, 14, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (17, N'Артем', N'Левченко', N'Юрійович', CAST(N'1995-11-26' AS Date), 16, 15, 17, 15, 3, 1, 16, 15, N'м. Кропивницький, вул. Велика, 13', N'+380901234567', N'artem.levchenko@gmail.com', 1, 15, 1)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (18, N'Вікторія', N'Пономаренко', N'Олегівна', CAST(N'1999-09-14' AS Date), 17, 16, 1, 16, 4, 1, 17, 16, N'м. Тернопіль, вул. Руська, 7', N'+380911234567', N'viktoria.ponomarenko@gmail.com', 1, 16, 0)
+INSERT [dbo].[Servicemen] ([Id], [FirstName], [LastName], [MiddleName], [BirthDate], [CivilProfessionId], [MilitarySpecialtyId], [EducationId], [PositionId], [SubdivisionId], [ServiceFormId], [CharacterTraitId], [ServiceAttitudeId], [Address], [Phone], [Email], [ServiceStatusId], [FitnessCategoryId], [IsOfficer]) VALUES (19, N'Ярослав', N'Герасимчук', N'Богданович', CAST(N'1992-12-08' AS Date), 1, 17, 2, 17, 2, 1, 1, 17, N'м. Івано-Франківськ, вул. Галицька, 5', N'+380921234567', N'yaroslav.gerasymchuk@gmail.com', 1, 17, 1)
+SET IDENTITY_INSERT [dbo].[Servicemen] OFF
+GO
+SET IDENTITY_INSERT [dbo].[DocumentFlow] ON 
 
--- Вставка до Servicemen
-INSERT INTO Servicemen (FirstName, LastName, MiddleName, BirthDate, CivilProfessionId, MilitarySpecialtyId, EducationId, PositionId, SubdivisionId, ServiceFormId, CharacterTraitId, ServiceAttitudeId, Address, Phone, Email, ServiceStatusId, FitnessCategoryId, IsOfficer) VALUES
-(N'Олег', N'Ковальчук', N'Іванович', '1995-03-12', 1, 1, 1, 1, 1, 1, 1, 1, N'м. Київ, вул. Героїв, 10', N'+380671234567', N'oleg.kovalchuk@gmail.com', 1, 1, 0),
-(N'Марія', N'Степаненко', N'Олександрівна', '1998-07-25', 4, 2, 7, 2, 8, 1, 4, 2, N'м. Львів, вул. Свободи, 5', N'+380931234567', N'maria.stepanenko@gmail.com', 1, 2, 0),
-(N'Іван', N'Петренко', N'Миколайович', '1993-11-03', 3, 3, 4, 3, 5, 1, 3, 3, N'м. Харків, вул. Миру, 22', N'+380501234567', N'ivan.petrenko@gmail.com', 1, 3, 1),
-(N'Софія', N'Лисенко', N'Василівна', '1997-04-18', 5, 4, 5, 4, 10, 1, 5, 4, N'м. Одеса, вул. Морська, 15', N'+380681234567', N'sofia.lysenko@gmail.com', 1, 4, 1),
-(N'Андрій', N'Бондар', N'Олегович', '1994-09-09', 6, 5, 6, 5, 6, 1, 6, 5, N'м. Дніпро, вул. Центральна, 7', N'+380961234567', N'andriy.bondar@gmail.com', 1, 5, 0),
-(N'Юлія', N'Мельник', N'Сергіївна', '1996-12-30', 7, 6, 8, 6, 7, 1, 7, 6, N'м. Вінниця, вул. Соборна, 12', N'+380631234567', N'yulia.melnyk@gmail.com', 1, 6, 0),
-(N'Максим', N'Шевченко', N'Вікторович', '1992-01-15', 8, 7, 9, 7, 13, 1, 8, 7, N'м. Запоріжжя, вул. Перемоги, 20', N'+380991234567', N'maksym.shevchenko@gmail.com', 1, 7, 1),
-(N'Олена', N'Ткаченко', N'Павлівна', '1999-06-22', 9, 8, 10, 8, 16, 1, 9, 8, N'м. Черкаси, вул. Лісова, 8', N'+380661234567', N'olena.tkachenko@gmail.com', 1, 8, 0),
-(N'Віталій', N'Кравець', N'Олексійович', '1991-08-04', 10, 9, 11, 9, 11, 1, 10, 9, N'м. Полтава, вул. Європейська, 3', N'+380951234567', N'vitaliy.kravets@gmail.com', 1, 9, 1),
-(N'Анна', N'Гнатюк', N'Ігорівна', '1997-02-28', 11, 10, 12, 10, 12, 1, 11, 10, N'м. Житомир, вул. Київська, 14', N'+380971234567', N'anna.gnatyuk@gmail.com', 1, 10, 0),
-(N'Роман', N'Дорошенко', N'Степанович', '1993-05-17', 12, 11, 13, 11, 14, 1, 12, 11, N'м. Суми, вул. Харківська, 9', N'+380981234567', N'roman.doroshenko@gmail.com', 1, 11, 1),
-(N'Катерина', N'Романенко', N'Андріївна', '1998-10-11', 13, 12, 14, 12, 15, 1, 13, 12, N'м. Чернігів, вул. Шевченка, 6', N'+380921234567', N'kateryna.romanenko@gmail.com', 1, 12, 0),
-(N'Дмитро', N'Клименко', N'Володимирович', '1994-03-07', 14, 13, 15, 13, 17, 1, 14, 13, N'м. Хмельницький, вул. Подільська, 11', N'+380931234567', N'dmytro.klymenko@gmail.com', 1, 13, 1),
-(N'Наталія', N'Савчук', N'Михайлівна', '1996-07-19', 15, 14, 16, 14, 9, 1, 15, 14, N'м. Рівне, вул. Соборна, 4', N'+380941234567', N'natalia.savchuk@gmail.com', 1, 14, 0),
-(N'Артем', N'Левченко', N'Юрійович', '1995-11-26', 16, 15, 17, 15, 3, 1, 16, 15, N'м. Кропивницький, вул. Велика, 13', N'+380901234567', N'artem.levchenko@gmail.com', 1, 15, 1),
-(N'Вікторія', N'Пономаренко', N'Олегівна', '1999-09-14', 17, 16, 1, 16, 4, 1, 17, 16, N'м. Тернопіль, вул. Руська, 7', N'+380911234567', N'viktoria.ponomarenko@gmail.com', 1, 16, 0),
-(N'Ярослав', N'Герасимчук', N'Богданович', '1992-12-08', 1, 17, 2, 17, 2, 1, 1, 17, N'м. Івано-Франківськ, вул. Галицька, 5', N'+380921234567', N'yaroslav.gerasymchuk@gmail.com', 1, 17, 1);
+INSERT [dbo].[DocumentFlow] ([Id], [Title], [Content], [DocumentTypeId], [CreatedById], [CreatedDate], [StatusId], [ServicemanId], [MilitaryUnitId]) VALUES (20, N'qwdqwdqwd', N'qwdqwdqwd', 32, 8, CAST(N'2025-05-06T19:18:42.340' AS DateTime), 23, 13, 1)
+SET IDENTITY_INSERT [dbo].[DocumentFlow] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ServiceHistory] ON 
 
--- Вставка до RankAssignments
-INSERT INTO RankAssignments (ServicemanId, RankId, AssignmentDate) VALUES
-(1, 1, '2020-01-10'),
-(2, 2, '2020-02-15'),
-(3, 6, '2020-03-20'),
-(4, 3, '2020-04-25'),
-(5, 1, '2020-05-30'),
-(6, 4, '2020-06-05'),
-(7, 7, '2020-07-10'),
-(8, 2, '2020-08-15'),
-(9, 8, '2020-09-20'),
-(10, 3, '2020-10-25'),
-(11, 9, '2020-11-30'),
-(12, 4, '2020-12-05'),
-(13, 10, '2021-01-10'),
-(14, 5, '2021-02-15'),
-(15, 11, '2021-03-20'),
-(16, 1, '2021-04-25'),
-(17, 12, '2021-05-30');
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (1, 1, 1, 1, CAST(N'2020-03-01' AS Date), NULL)
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (2, 2, 2, 2, CAST(N'2021-07-01' AS Date), NULL)
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (3, 1, 1, 1, CAST(N'2019-01-10' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (4, 2, 2, 8, CAST(N'2019-02-15' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (5, 3, 3, 5, CAST(N'2019-03-20' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (6, 4, 4, 10, CAST(N'2019-04-25' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (7, 5, 5, 6, CAST(N'2019-05-30' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (8, 6, 6, 7, CAST(N'2019-06-05' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (9, 7, 7, 13, CAST(N'2019-07-10' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (10, 8, 8, 16, CAST(N'2019-08-15' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (11, 9, 9, 11, CAST(N'2019-09-20' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (12, 10, 10, 12, CAST(N'2019-10-25' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (13, 11, 11, 14, CAST(N'2019-11-30' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (14, 12, 12, 15, CAST(N'2019-12-05' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (15, 13, 13, 17, CAST(N'2020-01-10' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (16, 14, 14, 9, CAST(N'2020-02-15' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (17, 15, 15, 3, CAST(N'2020-03-20' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (18, 16, 16, 4, CAST(N'2020-04-25' AS Date), CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[ServiceHistory] ([Id], [ServicemanId], [PositionId], [SubdivisionId], [StartDate], [EndDate]) VALUES (19, 17, 17, 2, CAST(N'2020-05-30' AS Date), CAST(N'2025-05-01' AS Date))
+SET IDENTITY_INSERT [dbo].[ServiceHistory] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Ranks] ON 
 
--- Вставка до Discharges
-INSERT INTO Discharges (ServicemanId, DischargeDate, DischargeReason) VALUES
-(1, '2023-06-15', N'Завершення контракту'),
-(2, '2023-07-20', N'Медичні причини'),
-(3, '2023-08-10', N'Переведення до резерву'),
-(4, '2023-09-05', N'Особисті обставини'),
-(5, '2023-10-12', N'Досягнення пенсійного віку'),
-(6, '2023-11-18', N'Завершення терміну призову'),
-(7, '2023-12-22', N'Переведення до іншого підрозділу'),
-(8, '2024-01-30', N'Медичні причини'),
-(9, '2024-02-14', N'Завершення контракту'),
-(10, '2024-03-25', N'Особисті обставини'),
-(11, '2024-04-10', N'Переведення до резерву'),
-(12, '2024-05-15', N'Досягнення пенсійного віку'),
-(13, '2024-06-20', N'Завершення терміну призову'),
-(14, '2024-07-05', N'Медичні причини'),
-(15, '2024-08-12', N'Переведення до іншого підрозділу'),
-(16, '2024-09-18', N'Особисті обставини'),
-(17, '2024-10-25', N'Завершення контракту');
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (1, N'Солдат')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (2, N'Сержант')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (3, N'Лейтенант')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (4, N'Рядовий')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (5, N'Єфрейтор')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (6, N'Сержант')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (7, N'Старший сержант')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (8, N'Головний сержант')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (9, N'Молодший лейтенант')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (10, N'Лейтенант')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (11, N'Старший лейтенант')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (12, N'Капітан')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (13, N'Майор')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (14, N'Підполковник')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (15, N'Полковник')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (16, N'Генерал-майор')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (17, N'Генерал-лейтенант')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (18, N'Генерал')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (19, N'Маршал')
+INSERT [dbo].[Ranks] ([Id], [RankName]) VALUES (20, N'Прапорщик')
+SET IDENTITY_INSERT [dbo].[Ranks] OFF
+GO
+SET IDENTITY_INSERT [dbo].[RankAssignments] ON 
 
--- Вставка до Awards
-INSERT INTO Awards (ServicemanId, AwardName, AwardDate) VALUES
-(1, N'Медаль за відвагу', '2021-06-01'),
-(2, N'Орден за заслуги', '2021-07-10'),
-(3, N'Зірка героя', '2021-08-15'),
-(4, N'Медаль за вислугу', '2021-09-20'),
-(5, N'Почесна грамота', '2021-10-25'),
-(6, N'Медаль за мужність', '2021-11-30'),
-(7, N'Орден слави', '2021-12-05'),
-(8, N'Медаль за оборону', '2022-01-10'),
-(9, N'Відзнака президента', '2022-02-15'),
-(10, N'Медаль за дисципліну', '2022-03-20'),
-(11, N'Орден честі', '2022-04-25'),
-(12, N'Медаль за професіоналізм', '2022-05-30'),
-(13, N'Знак пошани', '2022-06-05'),
-(14, N'Медаль за відданість', '2022-07-10'),
-(15, N'Орден мужності', '2022-08-15'),
-(16, N'Медаль за звитягу', '2022-09-20'),
-(17, N'Почесний хрест', '2022-10-25');
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (1, 1, 2, CAST(N'2023-05-10' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (2, 2, 1, CAST(N'2024-02-15' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (3, 1, 1, CAST(N'2020-01-10' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (4, 2, 2, CAST(N'2020-02-15' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (5, 3, 6, CAST(N'2020-03-20' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (6, 4, 3, CAST(N'2020-04-25' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (7, 5, 1, CAST(N'2020-05-30' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (8, 6, 4, CAST(N'2020-06-05' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (9, 7, 7, CAST(N'2020-07-10' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (10, 8, 2, CAST(N'2020-08-15' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (11, 9, 8, CAST(N'2020-09-20' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (12, 10, 3, CAST(N'2020-10-25' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (13, 11, 9, CAST(N'2020-11-30' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (14, 12, 4, CAST(N'2020-12-05' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (15, 13, 10, CAST(N'2021-01-10' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (16, 14, 5, CAST(N'2021-02-15' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (17, 15, 11, CAST(N'2021-03-20' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (18, 16, 1, CAST(N'2021-04-25' AS Date))
+INSERT [dbo].[RankAssignments] ([Id], [ServicemanId], [RankId], [AssignmentDate]) VALUES (19, 17, 12, CAST(N'2021-05-30' AS Date))
+SET IDENTITY_INSERT [dbo].[RankAssignments] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ContactInfo] ON 
 
--- Вставка до ContactInfo
-INSERT INTO ContactInfo (ServicemanId, Phone, Email, Address) VALUES
-(1, N'+380671234567', N'oleg.kovalchuk@gmail.com', N'м. Київ, вул. Героїв, 10'),
-(2, N'+380931234567', N'maria.stepanenko@gmail.com', N'м. Львів, вул. Свободи, 5'),
-(3, N'+380501234567', N'ivan.petrenko@gmail.com', N'м. Харків, вул. Миру, 22'),
-(4, N'+380681234567', N'sofia.lysenko@gmail.com', N'м. Одеса, вул. Морська, 15'),
-(5, N'+380961234567', N'andriy.bondar@gmail.com', N'м. Дніпро, вул. Центральна, 7'),
-(6, N'+380631234567', N'yulia.melnyk@gmail.com', N'м. Вінниця, вул. Соборна, 12'),
-(7, N'+380991234567', N'maksym.shevchenko@gmail.com', N'м. Запоріжжя, вул. Перемоги, 20'),
-(8, N'+380661234567', N'olena.tkachenko@gmail.com', N'м. Черкаси, вул. Лісова, 8'),
-(9, N'+380951234567', N'vitaliy.kravets@gmail.com', N'м. Полтава, вул. Європейська, 3'),
-(10, N'+380971234567', N'anna.gnatyuk@gmail.com', N'м. Житомир, вул. Київська, 14'),
-(11, N'+380981234567', N'roman.doroshenko@gmail.com', N'м. Суми, вул. Харківська, 9'),
-(12, N'+380921234567', N'kateryna.romanenko@gmail.com', N'м. Чернігів, вул. Шевченка, 6'),
-(13, N'+380931234567', N'dmytro.klymenko@gmail.com', N'м. Хмельницький, вул. Подільська, 11'),
-(14, N'+380941234567', N'natalia.savchuk@gmail.com', N'м. Рівне, вул. Соборна, 4'),
-(15, N'+380901234567', N'artem.levchenko@gmail.com', N'м. Кропивницький, вул. Велика, 13'),
-(16, N'+380911234567', N'viktoria.ponomarenko@gmail.com', N'м. Тернопіль, вул. Руська, 7'),
-(17, N'+380921234567', N'yaroslav.gerasymchuk@gmail.com', N'м. Івано-Франківськ, вул. Галицька, 5');
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (1, 1, N'+380501234567', N'ivan.petrenko@example.com', N'Київ, вул. Хрещатик, 10')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (2, 2, N'+380503334455', N'olena.koval@example.com', N'Львів, вул. Шевченка, 45')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (3, 19, N'+380921234567', N'yaroslav.gerasymchuk@gmail.com', N'м. Івано-Франківськ, вул. Галицька, 5')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (4, 18, N'+380911234567', N'viktoria.ponomarenko@gmail.com', N'м. Тернопіль, вул. Руська, 7')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (5, 17, N'+380901234567', N'artem.levchenko@gmail.com', N'м. Кропивницький, вул. Велика, 13')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (6, 16, N'+380941234567', N'natalia.savchuk@gmail.com', N'м. Рівне, вул. Соборна, 4')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (7, 15, N'+380931234567', N'dmytro.klymenko@gmail.com', N'м. Хмельницький, вул. Подільська, 11')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (8, 14, N'+380921234567', N'kateryna.romanenko@gmail.com', N'м. Чернігів, вул. Шевченка, 6')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (9, 13, N'+380981234567', N'roman.doroshenko@gmail.com', N'м. Суми, вул. Харківська, 9')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (10, 12, N'+380971234567', N'anna.gnatyuk@gmail.com', N'м. Житомир, вул. Київська, 14')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (11, 11, N'+380951234567', N'vitaliy.kravets@gmail.com', N'м. Полтава, вул. Європейська, 3')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (12, 10, N'+380661234567', N'olena.tkachenko@gmail.com', N'м. Черкаси, вул. Лісова, 8')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (13, 9, N'+380991234567', N'maksym.shevchenko@gmail.com', N'м. Запоріжжя, вул. Перемоги, 20')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (14, 8, N'+380631234567', N'yulia.melnyk@gmail.com', N'м. Вінниця, вул. Соборна, 12')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (15, 7, N'+380961234567', N'andriy.bondar@gmail.com', N'м. Дніпро, вул. Центральна, 7')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (16, 6, N'+380681234567', N'sofia.lysenko@gmail.com', N'м. Одеса, вул. Морська, 15')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (17, 5, N'+380501234567', N'ivan.petrenko@gmail.com', N'м. Харків, вул. Миру, 22')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (18, 4, N'+380931234567', N'maria.stepanenko@gmail.com', N'м. Львів, вул. Свободи, 5')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (19, 3, N'+380671234567', N'oleg.kovalchuk@gmail.com', N'м. Київ, вул. Героїв, 10')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (20, 1, N'+380671234567', N'oleg.kovalchuk@gmail.com', N'м. Київ, вул. Героїв, 10')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (21, 2, N'+380931234567', N'maria.stepanenko@gmail.com', N'м. Львів, вул. Свободи, 5')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (22, 3, N'+380501234567', N'ivan.petrenko@gmail.com', N'м. Харків, вул. Миру, 22')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (23, 4, N'+380681234567', N'sofia.lysenko@gmail.com', N'м. Одеса, вул. Морська, 15')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (24, 5, N'+380961234567', N'andriy.bondar@gmail.com', N'м. Дніпро, вул. Центральна, 7')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (25, 6, N'+380631234567', N'yulia.melnyk@gmail.com', N'м. Вінниця, вул. Соборна, 12')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (26, 7, N'+380991234567', N'maksym.shevchenko@gmail.com', N'м. Запоріжжя, вул. Перемоги, 20')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (27, 8, N'+380661234567', N'olena.tkachenko@gmail.com', N'м. Черкаси, вул. Лісова, 8')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (28, 9, N'+380951234567', N'vitaliy.kravets@gmail.com', N'м. Полтава, вул. Європейська, 3')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (29, 10, N'+380971234567', N'anna.gnatyuk@gmail.com', N'м. Житомир, вул. Київська, 14')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (30, 11, N'+380981234567', N'roman.doroshenko@gmail.com', N'м. Суми, вул. Харківська, 9')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (31, 12, N'+380921234567', N'kateryna.romanenko@gmail.com', N'м. Чернігів, вул. Шевченка, 6')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (32, 13, N'+380931234567', N'dmytro.klymenko@gmail.com', N'м. Хмельницький, вул. Подільська, 11')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (33, 14, N'+380941234567', N'natalia.savchuk@gmail.com', N'м. Рівне, вул. Соборна, 4')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (34, 15, N'+380901234567', N'artem.levchenko@gmail.com', N'м. Кропивницький, вул. Велика, 13')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (35, 16, N'+380911234567', N'viktoria.ponomarenko@gmail.com', N'м. Тернопіль, вул. Руська, 7')
+INSERT [dbo].[ContactInfo] ([Id], [ServicemanId], [Phone], [Email], [Address]) VALUES (36, 17, N'+380921234567', N'yaroslav.gerasymchuk@gmail.com', N'м. Івано-Франківськ, вул. Галицька, 5')
+SET IDENTITY_INSERT [dbo].[ContactInfo] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Documents] ON 
 
--- Вставка до DocumentFlow
-INSERT INTO DocumentFlow (Title, Content, DocumentTypeId, CreatedById, CreatedDate, StatusId) VALUES
-(N'Наказ про призначення', N'Призначити на посаду...', 1, 1, GETDATE(), 1),
-(N'Рапорт про відпустку', N'Прошу надати відпустку...', 2, 2, GETDATE(), 2),
-(N'Довідка про стан здоров’я', N'Дані про здоров’я...', 3, 3, GETDATE(), 3),
-(N'Атестат про підготовку', N'Сертифікат про курс...', 4, 4, GETDATE(), 4),
-(N'Посвідчення офіцера', N'Особисті дані офіцера...', 5, 5, GETDATE(), 5),
-(N'Звіт про операцію', N'Деталі операції...', 6, 6, GETDATE(), 6),
-(N'Договір про службу', N'Умови контракту...', 7, 7, GETDATE(), 7),
-(N'Лист-подяка', N'Подяка за службу...', 8, 8, GETDATE(), 8),
-(N'Протокол наради', N'Результати наради...', 9, 9, GETDATE(), 9),
-(N'Інструкція з безпеки', N'Правила безпеки...', 10, 10, GETDATE(), 10),
-(N'Сертифікат про навчання', N'Завершення курсу...', 11, 11, GETDATE(), 11),
-(N'Журнал операцій', N'Записи операцій...', 12, 12, GETDATE(), 12),
-(N'Анкета особового складу', N'Особисті дані...', 13, 13, GETDATE(), 13),
-(N'Декларація про доходи', N'Фінансові дані...', 14, 14, GETDATE(), 14),
-(N'Медична довідка', N'Результати огляду...', 15, 15, GETDATE(), 15),
-(N'Службова записка', N'Пропозиція щодо...', 16, 16, GETDATE(), 16),
-(N'Розпорядження про переведення', N'Переведення на посаду...', 17, 17, GETDATE(), 17);
+INSERT [dbo].[Documents] ([Id], [ServicemanId], [DocumentType], [DocumentNumber], [IssueDate]) VALUES (21, 1, N'Резолюція про затвердження', N'111111111111', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[Documents] ([Id], [ServicemanId], [DocumentType], [DocumentNumber], [IssueDate]) VALUES (22, 14, N'Резолюція про затвердження', N'111111111111', CAST(N'2025-05-01' AS Date))
+SET IDENTITY_INSERT [dbo].[Documents] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MedicalRecords] ON 
 
--- Вставка до DocumentAssignments
-INSERT INTO DocumentAssignments (DocumentId, AssigneeId, AssignedDate, IsCompleted, CompletedDate) VALUES
-(1, 1, GETDATE(), 0, GETDATE() + 1),
-(2, 2, GETDATE(), 0, GETDATE() + 1),
-(3, 3, GETDATE(), 0, GETDATE() + 1),
-(4, 4, GETDATE(), 0, GETDATE() + 1),
-(5, 5, GETDATE(), 0, GETDATE() + 1),
-(6, 6, GETDATE(), 0, GETDATE() + 1),
-(7, 7, GETDATE(), 0, GETDATE() + 1),
-(8, 8, GETDATE(), 0, GETDATE() + 1),
-(9, 9, GETDATE(), 0, GETDATE() + 1),
-(10, 10, GETDATE(), 0, GETDATE() + 1),
-(11, 11, GETDATE(), 0, GETDATE() + 1),
-(12, 12, GETDATE(), 0, GETDATE() + 1),
-(13, 13, GETDATE(), 0, GETDATE() + 1),
-(14, 14, GETDATE(), 0, GETDATE() + 1),
-(15, 15, GETDATE(), 0, GETDATE() + 1),
-(16, 16, GETDATE(), 0, GETDATE() + 1),
-(17, 17, GETDATE(), 0, GETDATE() + 1);
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (1, 1, N'Здоровий', CAST(N'2024-01-20' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (2, 2, N'Має алергію', CAST(N'2024-01-22' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (3, 1, N'Здоровий', CAST(N'2022-01-10' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (4, 2, N'Легкий гастрит', CAST(N'2022-02-15' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (5, 3, N'Здоровий', CAST(N'2022-03-20' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (6, 4, N'Алергія на пилок', CAST(N'2022-04-25' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (7, 5, N'Здоровий', CAST(N'2022-05-30' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (8, 6, N'Мігрень', CAST(N'2022-06-05' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (9, 7, N'Здоровий', CAST(N'2022-07-10' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (10, 8, N'Легка гіпертонія', CAST(N'2022-08-15' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (11, 9, N'Здоровий', CAST(N'2022-09-20' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (12, 10, N'Астма', CAST(N'2022-10-25' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (13, 11, N'Здоровий', CAST(N'2022-11-30' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (14, 12, N'Хронічний бронхіт', CAST(N'2022-12-05' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (15, 13, N'Здоровий', CAST(N'2023-01-10' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (16, 14, N'Диспепсія', CAST(N'2023-02-15' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (17, 15, N'Здоровий', CAST(N'2023-03-20' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (18, 16, N'Легка анемія', CAST(N'2023-04-25' AS Date))
+INSERT [dbo].[MedicalRecords] ([Id], [ServicemanId], [MedicalCondition], [RecordDate]) VALUES (19, 17, N'Здоровий', CAST(N'2023-05-30' AS Date))
+SET IDENTITY_INSERT [dbo].[MedicalRecords] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Awards] ON 
 
--- Вставка до Documents
-INSERT INTO Documents (ServicemanId, DocumentType, DocumentNumber, IssueDate) VALUES
-(1, N'Паспорт', N'AB123456', '2018-01-10'),
-(2, N'Військовий квиток', N'VK654321', '2019-02-15'),
-(3, N'Посвідчення офіцера', N'OF987654', '2020-03-20'),
-(4, N'Медична довідка', N'MD456789', '2021-04-25'),
-(5, N'Водійське посвідчення', N'DL321654', '2017-05-30'),
-(6, N'Сертифікат', N'CR789123', '2018-06-05'),
-(7, N'Диплом', N'DP456987', '2019-07-10'),
-(8, N'Паспорт', N'AB654321', '2020-08-15'),
-(9, N'Військовий квиток', N'VK123789', '2021-09-20'),
-(10, N'Посвідчення офіцера', N'OF987123', '2017-10-25'),
-(11, N'Медична довідка', N'MD321789', '2018-11-30'),
-(12, N'Водійське посвідчення', N'DL789456', '2019-12-05'),
-(13, N'Сертифікат', N'CR123654', '2020-01-10'),
-(14, N'Диплом', N'DP789321', '2021-02-15'),
-(15, N'Паспорт', N'AB987654', '2017-03-20'),
-(16, N'Військовий квиток', N'VK456123', '2018-04-25'),
-(17, N'Посвідчення офіцера', N'OF321987', '2019-05-30');
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (1, 1, N'Медаль "За службу Україні"', CAST(N'2023-08-24' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (2, 1, N'Медаль за відвагу', CAST(N'2021-06-01' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (3, 2, N'Орден за заслуги', CAST(N'2021-07-10' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (4, 3, N'Зірка героя', CAST(N'2021-08-15' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (5, 4, N'Медаль за вислугу', CAST(N'2021-09-20' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (6, 5, N'Почесна грамота', CAST(N'2021-10-25' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (7, 6, N'Медаль за мужність', CAST(N'2021-11-30' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (8, 7, N'Орден слави', CAST(N'2021-12-05' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (9, 8, N'Медаль за оборону', CAST(N'2022-01-10' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (10, 9, N'Відзнака президента', CAST(N'2022-02-15' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (11, 10, N'Медаль за дисципліну', CAST(N'2022-03-20' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (12, 11, N'Орден честі', CAST(N'2022-04-25' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (13, 12, N'Медаль за професіоналізм', CAST(N'2022-05-30' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (14, 13, N'Знак пошани', CAST(N'2022-06-05' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (15, 14, N'Медаль за відданість', CAST(N'2022-07-10' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (16, 15, N'Орден мужності', CAST(N'2022-08-15' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (17, 16, N'Медаль за звитягу', CAST(N'2022-09-20' AS Date))
+INSERT [dbo].[Awards] ([Id], [ServicemanId], [AwardName], [AwardDate]) VALUES (18, 17, N'Почесний хрест', CAST(N'2022-10-25' AS Date))
+SET IDENTITY_INSERT [dbo].[Awards] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Punishments] ON 
 
--- Вставка до FamilyMembers
-INSERT INTO FamilyMembers (ServicemanId, FullName, Relationship, BirthDate) VALUES
-(1, N'Олена Ковальчук', N'Дружина', '1996-05-14'),
-(2, N'Ігор Степаненко', N'Чоловік', '1995-09-22'),
-(3, N'Марія Петренко', N'Мати', '1968-03-10'),
-(4, N'Віктор Лисенко', N'Батько', '1965-07-15'),
-(5, N'Аліна Бондар', N'Дочка', '2018-11-20'),
-(6, N'Сергій Мельник', N'Брат', '1993-02-25'),
-(7, N'Тетяна Шевченко', N'Сестра', '1990-06-30'),
-(8, N'Павло Ткаченко', N'Чоловік', '1994-08-05'),
-(9, N'Оксана Кравець', N'Дружина', '1995-12-10'),
-(10, N'Ірина Гнатюк', N'Мати', '1970-04-15'),
-(11, N'Михайло Дорошенко', N'Батько', '1967-08-20'),
-(12, N'Андрій Романенко', N'Син', '2017-10-25'),
-(13, N'Наталія Клименко', N'Дружина', '1996-01-30'),
-(14, N'Олег Савчук', N'Чоловік', '1993-05-05'),
-(15, N'Катерина Левченко', N'Сестра', '1997-09-10'),
-(16, N'Юрій Пономаренко', N'Брат', '1994-11-15'),
-(17, N'Софія Герасимчук', N'Дочка', '2019-02-20');
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (1, 2, N'Запізнення на стройову підготовку', CAST(N'2024-03-10' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (2, 1, N'Догана за порушення дисципліни', CAST(N'2023-01-10' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (3, 2, N'Попередження за запізнення', CAST(N'2023-02-15' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (4, 3, NULL, NULL)
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (5, 4, N'Догана за невиконання наказу', CAST(N'2023-04-25' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (6, 5, NULL, NULL)
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (7, 6, N'Попередження за недбалість', CAST(N'2023-06-05' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (8, 7, NULL, NULL)
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (9, 8, N'Догана за порушення форми', CAST(N'2023-08-15' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (10, 9, NULL, NULL)
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (11, 10, N'Попередження за неуважність', CAST(N'2023-10-25' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (12, 11, NULL, NULL)
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (13, 12, N'Догана за порушення субординації', CAST(N'2023-12-05' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (14, 13, NULL, NULL)
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (15, 14, N'Попередження за затримку звіту', CAST(N'2024-02-15' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (16, 15, NULL, NULL)
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (17, 16, N'Догана за невідповідність вимогам', CAST(N'2024-04-25' AS Date))
+INSERT [dbo].[Punishments] ([Id], [ServicemanId], [PunishmentDescription], [PunishmentDate]) VALUES (18, 17, NULL, NULL)
+SET IDENTITY_INSERT [dbo].[Punishments] OFF
+GO
+SET IDENTITY_INSERT [dbo].[FamilyMembers] ON 
 
--- Вставка до LanguageSkills
-INSERT INTO LanguageSkills (ServicemanId, Language, ProficiencyLevel) VALUES
-(1, N'Англійська', N'Високий'),
-(2, N'Німецька', N'Середній'),
-(3, N'Французька', N'Початковий'),
-(4, N'Польська', N'Високий'),
-(5, N'Російська', N'Середній'),
-(6, N'Іспанська', N'Початковий'),
-(7, N'Англійська', N'Високий'),
-(8, N'Німецька', N'Середній'),
-(9, N'Французька', N'Початковий'),
-(10, N'Польська', N'Високий'),
-(11, N'Російська', N'Середній'),
-(12, N'Іспанська', N'Початковий'),
-(13, N'Англійська', N'Високий'),
-(14, N'Німецька', N'Середній'),
-(15, N'Французька', N'Початковий'),
-(16, N'Польська', N'Високий'),
-(17, N'Російська', N'Середній');
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (1, 1, N'Марія Петренко', N'Мати', CAST(N'1970-05-30' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (2, 1, N'Олена Ковальчук', N'Дружина', CAST(N'1996-05-14' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (3, 2, N'Ігор Степаненко', N'Чоловік', CAST(N'1995-09-22' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (4, 3, N'Марія Петренко', N'Мати', CAST(N'1968-03-10' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (5, 4, N'Віктор Лисенко', N'Батько', CAST(N'1965-07-15' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (6, 5, N'Аліна Бондар', N'Дочка', CAST(N'2018-11-20' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (7, 6, N'Сергій Мельник', N'Брат', CAST(N'1993-02-25' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (8, 7, N'Тетяна Шевченко', N'Сестра', CAST(N'1990-06-30' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (9, 8, N'Павло Ткаченко', N'Чоловік', CAST(N'1994-08-05' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (10, 9, N'Оксана Кравець', N'Дружина', CAST(N'1995-12-10' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (11, 10, N'Ірина Гнатюк', N'Мати', CAST(N'1970-04-15' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (12, 11, N'Михайло Дорошенко', N'Батько', CAST(N'1967-08-20' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (13, 12, N'Андрій Романенко', N'Син', CAST(N'2017-10-25' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (14, 13, N'Наталія Клименко', N'Дружина', CAST(N'1996-01-30' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (15, 14, N'Олег Савчук', N'Чоловік', CAST(N'1993-05-05' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (16, 15, N'Катерина Левченко', N'Сестра', CAST(N'1997-09-10' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (17, 16, N'Юрій Пономаренко', N'Брат', CAST(N'1994-11-15' AS Date))
+INSERT [dbo].[FamilyMembers] ([Id], [ServicemanId], [FullName], [Relationship], [BirthDate]) VALUES (18, 17, N'Софія Герасимчук', N'Дочка', CAST(N'2019-02-20' AS Date))
+SET IDENTITY_INSERT [dbo].[FamilyMembers] OFF
+GO
+SET IDENTITY_INSERT [dbo].[PsychologicalProfiles] ON 
 
--- Вставка до MedicalRecords
-INSERT INTO MedicalRecords (ServicemanId, MedicalCondition, RecordDate) VALUES
-(1, N'Здоровий', '2022-01-10'),
-(2, N'Легкий гастрит', '2022-02-15'),
-(3, N'Здоровий', '2022-03-20'),
-(4, N'Алергія на пилок', '2022-04-25'),
-(5, N'Здоровий', '2022-05-30'),
-(6, N'Мігрень', '2022-06-05'),
-(7, N'Здоровий', '2022-07-10'),
-(8, N'Легка гіпертонія', '2022-08-15'),
-(9, N'Здоровий', '2022-09-20'),
-(10, N'Астма', '2022-10-25'),
-(11, N'Здоровий', '2022-11-30'),
-(12, N'Хронічний бронхіт', '2022-12-05'),
-(13, N'Здоровий', '2023-01-10'),
-(14, N'Диспепсія', '2023-02-15'),
-(15, N'Здоровий', '2023-03-20'),
-(16, N'Легка анемія', '2023-04-25'),
-(17, N'Здоровий', '2023-05-30');
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (1, 1, N'Стійкий до стресу', CAST(N'2024-04-15' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (2, 1, N'Стабільний, високий рівень стресостійкості', CAST(N'2023-01-10' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (3, 2, N'Емоційно врівноважений', CAST(N'2023-02-15' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (4, 3, N'Лідерські якості, впевненість', CAST(N'2023-03-20' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (5, 4, N'Висока мотивація, командна робота', CAST(N'2023-04-25' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (6, 5, N'Стабільний, адаптивний', CAST(N'2023-05-30' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (7, 6, N'Чутливий до стресу, потребує підтримки', CAST(N'2023-06-05' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (8, 7, N'Сильний лідер, стратегічне мислення', CAST(N'2023-07-10' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (9, 8, N'Емоційна стабільність, командний гравець', CAST(N'2023-08-15' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (10, 9, N'Висока стресостійкість, аналітичний розум', CAST(N'2023-09-20' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (11, 10, N'Чутливий до змін, потребує адаптації', CAST(N'2023-10-25' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (12, 11, N'Стабільний, впевнений у собі', CAST(N'2023-11-30' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (13, 12, N'Висока мотивація, командна орієнтація', CAST(N'2023-12-05' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (14, 13, N'Лідерські якості, стресостійкість', CAST(N'2024-01-10' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (15, 14, N'Емоційно врівноважений, адаптивний', CAST(N'2024-02-15' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (16, 15, N'Стабільний, високий рівень мотивації', CAST(N'2024-03-20' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (17, 16, N'Чутливий до стресу, потребує моніторингу', CAST(N'2024-04-25' AS Date))
+INSERT [dbo].[PsychologicalProfiles] ([Id], [ServicemanId], [ProfileDescription], [AssessmentDate]) VALUES (18, 17, N'Сильний лідер, аналітичне мислення', CAST(N'2024-05-30' AS Date))
+SET IDENTITY_INSERT [dbo].[PsychologicalProfiles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Trainings] ON 
 
--- Вставка до MobilizationLists
-INSERT INTO MobilizationLists (ListName, CreationDate) VALUES
-(N'Мобілізаційний список 1', GETDATE()),
-(N'Мобілізаційний список 2', GETDATE()),
-(N'Мобілізаційний список 3', GETDATE()),
-(N'Мобілізаційний список 4', GETDATE()),
-(N'Мобілізаційний список 5', GETDATE()),
-(N'Мобілізаційний список 6', GETDATE()),
-(N'Мобілізаційний список 7', GETDATE()),
-(N'Мобілізаційний список 8', GETDATE()),
-(N'Мобілізаційний список 9', GETDATE()),
-(N'Мобілізаційний список 10', GETDATE()),
-(N'Мобілізаційний список 11', GETDATE()),
-(N'Мобілізаційний список 12', GETDATE()),
-(N'Мобілізаційний список 13', GETDATE()),
-(N'Мобілізаційний список 14', GETDATE()),
-(N'Мобілізаційний список 15', GETDATE()),
-(N'Мобілізаційний список 16', GETDATE()),
-(N'Мобілізаційний список 17', GETDATE());
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (1, 1, N'Курс підвищення кваліфікації командира', CAST(N'2023-11-01' AS Date), CAST(N'2023-11-30' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (2, 1, N'Базова підготовка', CAST(N'2019-01-10' AS Date), CAST(N'2019-03-10' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (3, 2, N'Медична підготовка', CAST(N'2019-02-15' AS Date), CAST(N'2019-04-15' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (4, 3, N'Снайперський курс', CAST(N'2019-03-20' AS Date), CAST(N'2019-05-20' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (5, 4, N'Кібербезпека', CAST(N'2019-04-25' AS Date), CAST(N'2019-06-25' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (6, 5, N'Авіаційна техніка', CAST(N'2019-05-30' AS Date), CAST(N'2019-07-30' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (7, 6, N'Знешкодження вибухівки', CAST(N'2019-06-05' AS Date), CAST(N'2019-08-05' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (8, 7, N'Розвідувальний курс', CAST(N'2019-07-10' AS Date), CAST(N'2019-09-10' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (9, 8, N'Танкова підготовка', CAST(N'2019-08-15' AS Date), CAST(N'2019-10-15' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (10, 9, N'Артилерійський курс', CAST(N'2019-09-20' AS Date), CAST(N'2019-11-20' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (11, 10, N'Зв’язок', CAST(N'2019-10-25' AS Date), CAST(N'2019-12-25' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (12, 11, N'Парашутна підготовка', CAST(N'2019-11-30' AS Date), CAST(N'2020-01-30' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (13, 12, N'Керування дронами', CAST(N'2019-12-05' AS Date), CAST(N'2020-02-05' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (14, 13, N'Логістична підготовка', CAST(N'2020-01-10' AS Date), CAST(N'2020-03-10' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (15, 14, N'Військова поліція', CAST(N'2020-02-15' AS Date), CAST(N'2020-04-15' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (16, 15, N'Інженерна підготовка', CAST(N'2020-03-20' AS Date), CAST(N'2020-05-20' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (17, 16, N'Спеціальні операції', CAST(N'2020-04-25' AS Date), CAST(N'2020-06-25' AS Date))
+INSERT [dbo].[Trainings] ([Id], [ServicemanId], [TrainingName], [StartDate], [EndDate]) VALUES (18, 17, N'Розвідувальна підготовка', CAST(N'2020-05-30' AS Date), CAST(N'2020-07-30' AS Date))
+SET IDENTITY_INSERT [dbo].[Trainings] OFF
+GO
+SET IDENTITY_INSERT [dbo].[LanguageSkills] ON 
 
--- Вставка до MobilizationListEntries
-INSERT INTO MobilizationListEntries (MobilizationListId, ServicemanId) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6),
-(7, 7),
-(8, 8),
-(9, 9),
-(10, 10),
-(11, 11),
-(12, 12),
-(13, 13),
-(14, 14),
-(15, 15),
-(16, 16),
-(17, 17);
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (1, 1, N'Англійська', N'Середній')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (2, 2, N'Польська', N'Початковий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (3, 1, N'Англійська', N'Високий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (4, 2, N'Німецька', N'Середній')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (5, 3, N'Французька', N'Початковий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (6, 4, N'Польська', N'Високий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (7, 5, N'Російська', N'Середній')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (8, 6, N'Іспанська', N'Початковий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (9, 7, N'Англійська', N'Високий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (10, 8, N'Німецька', N'Середній')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (11, 9, N'Французька', N'Початковий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (12, 10, N'Польська', N'Високий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (13, 11, N'Російська', N'Середній')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (14, 12, N'Іспанська', N'Початковий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (15, 13, N'Англійська', N'Високий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (16, 14, N'Німецька', N'Середній')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (17, 15, N'Французька', N'Початковий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (18, 16, N'Польська', N'Високий')
+INSERT [dbo].[LanguageSkills] ([Id], [ServicemanId], [Language], [ProficiencyLevel]) VALUES (19, 17, N'Російська', N'Середній')
+SET IDENTITY_INSERT [dbo].[LanguageSkills] OFF
+GO
+SET IDENTITY_INSERT [dbo].[OperationalReadiness] ON 
 
--- Вставка до OperationalReadiness
-INSERT INTO OperationalReadiness (ServicemanId, ReadinessStatus, AssessmentDate) VALUES
-(1, N'Готовий', '2023-01-10'),
-(2, N'Частково готовий', '2023-02-15'),
-(3, N'Готовий', '2023-03-20'),
-(4, N'Готовий', '2023-04-25'),
-(5, N'Готовий', '2023-05-30'),
-(6, N'Частково готовий', '2023-06-05'),
-(7, N'Готовий', '2023-07-10'),
-(8, N'Готовий', '2023-08-15'),
-(9, N'Готовий', '2023-09-20'),
-(10, N'Частково готовий', '2023-10-25'),
-(11, N'Готовий', '2023-11-30'),
-(12, N'Готовий', '2023-12-05'),
-(13, N'Готовий', '2024-01-10'),
-(14, N'Частково готовий', '2024-02-15'),
-(15, N'Готовий', '2024-03-20'),
-(16, N'Готовий', '2024-04-25'),
-(17, N'Готовий', '2024-05-30');
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (1, 1, N'Повністю готовий', CAST(N'2024-04-01' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (2, 2, N'Потребує додаткової підготовки', CAST(N'2024-04-02' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (3, 1, N'Готовий', CAST(N'2023-01-10' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (4, 2, N'Частково готовий', CAST(N'2023-02-15' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (5, 3, N'Готовий', CAST(N'2023-03-20' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (6, 4, N'Готовий', CAST(N'2023-04-25' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (7, 5, N'Готовий', CAST(N'2023-05-30' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (8, 6, N'Частково готовий', CAST(N'2023-06-05' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (9, 7, N'Готовий', CAST(N'2023-07-10' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (10, 8, N'Готовий', CAST(N'2023-08-15' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (11, 9, N'Готовий', CAST(N'2023-09-20' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (12, 10, N'Частково готовий', CAST(N'2023-10-25' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (13, 11, N'Готовий', CAST(N'2023-11-30' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (14, 12, N'Готовий', CAST(N'2023-12-05' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (15, 13, N'Готовий', CAST(N'2024-01-10' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (16, 14, N'Частково готовий', CAST(N'2024-02-15' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (17, 15, N'Готовий', CAST(N'2024-03-20' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (18, 16, N'Готовий', CAST(N'2024-04-25' AS Date))
+INSERT [dbo].[OperationalReadiness] ([Id], [ServicemanId], [ReadinessStatus], [AssessmentDate]) VALUES (19, 17, N'Готовий', CAST(N'2024-05-30' AS Date))
+SET IDENTITY_INSERT [dbo].[OperationalReadiness] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MobilizationLists] ON 
 
--- Вставка до PsychologicalProfiles
-INSERT INTO PsychologicalProfiles (ServicemanId, ProfileDescription, AssessmentDate) VALUES
-(1, N'Стабільний, високий рівень стресостійкості', '2023-01-10'),
-(2, N'Емоційно врівноважений', '2023-02-15'),
-(3, N'Лідерські якості, впевненість', '2023-03-20'),
-(4, N'Висока мотивація, командна робота', '2023-04-25'),
-(5, N'Стабільний, адаптивний', '2023-05-30'),
-(6, N'Чутливий до стресу, потребує підтримки', '2023-06-05'),
-(7, N'Сильний лідер, стратегічне мислення', '2023-07-10'),
-(8, N'Емоційна стабільність, командний гравець', '2023-08-15'),
-(9, N'Висока стресостійкість, аналітичний розум', '2023-09-20'),
-(10, N'Чутливий до змін, потребує адаптації', '2023-10-25'),
-(11, N'Стабільний, впевнений у собі', '2023-11-30'),
-(12, N'Висока мотивація, командна орієнтація', '2023-12-05'),
-(13, N'Лідерські якості, стресостійкість', '2024-01-10'),
-(14, N'Емоційно врівноважений, адаптивний', '2024-02-15'),
-(15, N'Стабільний, високий рівень мотивації', '2024-03-20'),
-(16, N'Чутливий до стресу, потребує моніторингу', '2024-04-25'),
-(17, N'Сильний лідер, аналітичне мислення', '2024-05-30');
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (1, N'Мобілізація - Березень 2025', CAST(N'2025-04-26' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (2, N'Мобілізаційний список 1', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (3, N'Мобілізаційний список 2', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (4, N'Мобілізаційний список 3', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (5, N'Мобілізаційний список 4', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (6, N'Мобілізаційний список 5', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (7, N'Мобілізаційний список 6', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (8, N'Мобілізаційний список 7', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (9, N'Мобілізаційний список 8', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (10, N'Мобілізаційний список 9', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (11, N'Мобілізаційний список 10', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (12, N'Мобілізаційний список 11', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (13, N'Мобілізаційний список 12', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (14, N'Мобілізаційний список 13', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (15, N'Мобілізаційний список 14', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (16, N'Мобілізаційний список 15', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (17, N'Мобілізаційний список 16', CAST(N'2025-05-01' AS Date))
+INSERT [dbo].[MobilizationLists] ([Id], [ListName], [CreationDate]) VALUES (18, N'Мобілізаційний список 17', CAST(N'2025-05-01' AS Date))
+SET IDENTITY_INSERT [dbo].[MobilizationLists] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MobilizationListEntries] ON 
 
--- Вставка до Punishments
-INSERT INTO Punishments (ServicemanId, PunishmentDescription, PunishmentDate) VALUES
-(1, N'Догана за порушення дисципліни', '2023-01-10'),
-(2, N'Попередження за запізнення', '2023-02-15'),
-(3, NULL, NULL),
-(4, N'Догана за невиконання наказу', '2023-04-25'),
-(5, NULL, NULL),
-(6, N'Попередження за недбалість', '2023-06-05'),
-(7, NULL, NULL),
-(8, N'Догана за порушення форми', '2023-08-15'),
-(9, NULL, NULL),
-(10, N'Попередження за неуважність', '2023-10-25'),
-(11, NULL, NULL),
-(12, N'Догана за порушення субординації', '2023-12-05'),
-(13, NULL, NULL),
-(14, N'Попередження за затримку звіту', '2024-02-15'),
-(15, NULL, NULL),
-(16, N'Догана за невідповідність вимогам', '2024-04-25'),
-(17, NULL, NULL);
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (1, 1, 1)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (2, 1, 2)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (3, 1, 1)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (4, 2, 2)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (5, 3, 3)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (6, 4, 4)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (7, 5, 5)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (8, 6, 6)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (9, 7, 7)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (10, 8, 8)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (11, 9, 9)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (12, 10, 10)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (13, 11, 11)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (14, 12, 12)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (15, 13, 13)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (16, 14, 14)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (17, 15, 15)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (18, 16, 16)
+INSERT [dbo].[MobilizationListEntries] ([Id], [MobilizationListId], [ServicemanId]) VALUES (19, 17, 17)
+SET IDENTITY_INSERT [dbo].[MobilizationListEntries] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Recruitments] ON 
 
--- Вставка до Recruitments
-INSERT INTO Recruitments (ServicemanId, RecruitmentDate) VALUES
-(1, '2019-01-10'),
-(2, '2019-02-15'),
-(3, '2019-03-20'),
-(4, '2019-04-25'),
-(5, '2019-05-30'),
-(6, '2019-06-05'),
-(7, '2019-07-10'),
-(8, '2019-08-15'),
-(9, '2019-09-20'),
-(10, '2019-10-25'),
-(11, '2019-11-30'),
-(12, '2019-12-05'),
-(13, '2020-01-10'),
-(14, '2020-02-15'),
-(15, '2020-03-20'),
-(16, '2020-04-25'),
-(17, '2020-05-30');
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (1, 1, CAST(N'2020-02-20' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (2, 2, CAST(N'2021-06-25' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (3, 1, CAST(N'2019-01-10' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (4, 2, CAST(N'2019-02-15' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (5, 3, CAST(N'2019-03-20' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (6, 4, CAST(N'2019-04-25' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (7, 5, CAST(N'2019-05-30' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (8, 6, CAST(N'2019-06-05' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (9, 7, CAST(N'2019-07-10' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (10, 8, CAST(N'2019-08-15' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (11, 9, CAST(N'2019-09-20' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (12, 10, CAST(N'2019-10-25' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (13, 11, CAST(N'2019-11-30' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (14, 12, CAST(N'2019-12-05' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (15, 13, CAST(N'2020-01-10' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (16, 14, CAST(N'2020-02-15' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (17, 15, CAST(N'2020-03-20' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (18, 16, CAST(N'2020-04-25' AS Date))
+INSERT [dbo].[Recruitments] ([Id], [ServicemanId], [RecruitmentDate]) VALUES (19, 17, CAST(N'2020-05-30' AS Date))
+SET IDENTITY_INSERT [dbo].[Recruitments] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Discharges] ON 
 
--- Вставка до Resolutions
-INSERT INTO Resolutions (DocumentId, AuthorId, ResolutionText, ResolutionDate) VALUES
-(1, 1, N'Затверджено', GETDATE()),
-(2, 2, N'Повернути на доопрацювання', GETDATE()),
-(3, 3, N'Відхилено', GETDATE()),
-(4, 4, N'Затверджено', GETDATE()),
-(5, 5, N'Прийнято', GETDATE()),
-(6, 6, N'Повернути на доопрацювання', GETDATE()),
-(7, 7, N'Затверджено', GETDATE()),
-(8, 8, N'Відхилено', GETDATE()),
-(9, 9, N'Затверджено', GETDATE()),
-(10, 10, N'Прийнято', GETDATE()),
-(11, 11, N'Повернути на доопрацювання', GETDATE()),
-(12, 12, N'Затверджено', GETDATE()),
-(13, 13, N'Відхилено', GETDATE()),
-(14, 14, N'Затверджено', GETDATE()),
-(15, 15, N'Прийнято', GETDATE()),
-(16, 16, N'Повернути на доопрацювання', GETDATE()),
-(17, 17, N'Затверджено', GETDATE());
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (1, 2, CAST(N'2025-03-15' AS Date), N'Сімейні обставини')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (3, 1, CAST(N'2023-06-15' AS Date), N'Завершення контракту')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (4, 2, CAST(N'2023-07-20' AS Date), N'Медичні причини')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (5, 3, CAST(N'2023-08-10' AS Date), N'Переведення до резерву')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (6, 4, CAST(N'2023-09-05' AS Date), N'Особисті обставини')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (7, 5, CAST(N'2023-10-12' AS Date), N'Досягнення пенсійного віку')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (8, 6, CAST(N'2023-11-18' AS Date), N'Завершення терміну призову')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (9, 7, CAST(N'2023-12-22' AS Date), N'Переведення до іншого підрозділу')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (10, 8, CAST(N'2024-01-30' AS Date), N'Медичні причини')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (11, 9, CAST(N'2024-02-14' AS Date), N'Завершення контракту')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (12, 10, CAST(N'2024-03-25' AS Date), N'Особисті обставини')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (13, 11, CAST(N'2024-04-10' AS Date), N'Переведення до резерву')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (14, 12, CAST(N'2024-05-15' AS Date), N'Досягнення пенсійного віку')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (15, 13, CAST(N'2024-06-20' AS Date), N'Завершення терміну призову')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (16, 14, CAST(N'2024-07-05' AS Date), N'Медичні причини')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (17, 15, CAST(N'2024-08-12' AS Date), N'Переведення до іншого підрозділу')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (18, 16, CAST(N'2024-09-18' AS Date), N'Особисті обставини')
+INSERT [dbo].[Discharges] ([Id], [ServicemanId], [DischargeDate], [DischargeReason]) VALUES (19, 17, CAST(N'2024-10-25' AS Date), N'Завершення контракту')
+SET IDENTITY_INSERT [dbo].[Discharges] OFF
+GO
+SET IDENTITY_INSERT [dbo].[DischargeLog] ON 
 
--- Вставка до ServiceHistory
-INSERT INTO ServiceHistory (ServicemanId, PositionId, SubdivisionId, StartDate, EndDate) VALUES
-(1, 1, 1, '2019-01-10', GETDATE()),
-(2, 2, 8, '2019-02-15', GETDATE()),
-(3, 3, 5, '2019-03-20', GETDATE()),
-(4, 4, 10, '2019-04-25', GETDATE()),
-(5, 5, 6, '2019-05-30', GETDATE()),
-(6, 6, 7, '2019-06-05', GETDATE()),
-(7, 7, 13, '2019-07-10', GETDATE()),
-(8, 8, 16, '2019-08-15', GETDATE()),
-(9, 9, 11, '2019-09-20', GETDATE()),
-(10, 10, 12, '2019-10-25', GETDATE()),
-(11, 11, 14, '2019-11-30', GETDATE()),
-(12, 12, 15, '2019-12-05', GETDATE()),
-(13, 13, 17, '2020-01-10', GETDATE()),
-(14, 14, 9, '2020-02-15', GETDATE()),
-(15, 15, 3, '2020-03-20', GETDATE()),
-(16, 16, 4, '2020-04-25', GETDATE()),
-(17, 17, 2, '2020-05-30', GETDATE());
-
--- Вставка до Trainings
-INSERT INTO Trainings (ServicemanId, TrainingName, StartDate, EndDate) VALUES
-(1, N'Базова підготовка', '2019-01-10', '2019-03-10'),
-(2, N'Медична підготовка', '2019-02-15', '2019-04-15'),
-(3, N'Снайперський курс', '2019-03-20', '2019-05-20'),
-(4, N'Кібербезпека', '2019-04-25', '2019-06-25'),
-(5, N'Авіаційна техніка', '2019-05-30', '2019-07-30'),
-(6, N'Знешкодження вибухівки', '2019-06-05', '2019-08-05'),
-(7, N'Розвідувальний курс', '2019-07-10', '2019-09-10'),
-(8, N'Танкова підготовка', '2019-08-15', '2019-10-15'),
-(9, N'Артилерійський курс', '2019-09-20', '2019-11-20'),
-(10, N'Зв’язок', '2019-10-25', '2019-12-25'),
-(11, N'Парашутна підготовка', '2019-11-30', '2020-01-30'),
-(12, N'Керування дронами', '2019-12-05', '2020-02-05'),
-(13, N'Логістична підготовка', '2020-01-10', '2020-03-10'),
-(14, N'Військова поліція', '2020-02-15', '2020-04-15'),
-(15, N'Інженерна підготовка', '2020-03-20', '2020-05-20'),
-(16, N'Спеціальні операції', '2020-04-25', '2020-06-25'),
-(17, N'Розвідувальна підготовка', '2020-05-30', '2020-07-30');
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (1, 17, CAST(N'2024-10-25' AS Date), N'Завершення контракту', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (2, 16, CAST(N'2024-09-18' AS Date), N'Особисті обставини', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (3, 15, CAST(N'2024-08-12' AS Date), N'Переведення до іншого підрозділу', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (4, 14, CAST(N'2024-07-05' AS Date), N'Медичні причини', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (5, 13, CAST(N'2024-06-20' AS Date), N'Завершення терміну призову', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (6, 12, CAST(N'2024-05-15' AS Date), N'Досягнення пенсійного віку', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (7, 11, CAST(N'2024-04-10' AS Date), N'Переведення до резерву', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (8, 10, CAST(N'2024-03-25' AS Date), N'Особисті обставини', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (9, 9, CAST(N'2024-02-14' AS Date), N'Завершення контракту', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (10, 8, CAST(N'2024-01-30' AS Date), N'Медичні причини', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (11, 7, CAST(N'2023-12-22' AS Date), N'Переведення до іншого підрозділу', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (12, 6, CAST(N'2023-11-18' AS Date), N'Завершення терміну призову', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (13, 5, CAST(N'2023-10-12' AS Date), N'Досягнення пенсійного віку', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (14, 4, CAST(N'2023-09-05' AS Date), N'Особисті обставини', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (15, 3, CAST(N'2023-08-10' AS Date), N'Переведення до резерву', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (16, 2, CAST(N'2023-07-20' AS Date), N'Медичні причини', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+INSERT [dbo].[DischargeLog] ([Id], [ServicemanId], [DischargeDate], [DischargeReason], [LogDate]) VALUES (17, 1, CAST(N'2023-06-15' AS Date), N'Завершення контракту', CAST(N'2025-05-01T00:52:36.743' AS DateTime))
+SET IDENTITY_INSERT [dbo].[DischargeLog] OFF
+GO

@@ -530,11 +530,23 @@ namespace Database.Migrations
                     DocumentTypeId = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    StatusId = table.Column<int>(type: "int", nullable: false)
+                    StatusId = table.Column<int>(type: "int", nullable: false),
+                    ServicemanId = table.Column<int>(type: "int", nullable: true),
+                    MilitaryUnitId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__Document__3214EC07E1B26C88", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DocumentFlow_MilitaryUnits",
+                        column: x => x.MilitaryUnitId,
+                        principalTable: "MilitaryUnits",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_DocumentFlow_Servicemen",
+                        column: x => x.ServicemanId,
+                        principalTable: "Servicemen",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK__DocumentF__Creat__08B54D69",
                         column: x => x.CreatedById,
@@ -941,6 +953,16 @@ namespace Database.Migrations
                 name: "IX_DocumentFlow_DocumentTypeId",
                 table: "DocumentFlow",
                 column: "DocumentTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentFlow_MilitaryUnitId",
+                table: "DocumentFlow",
+                column: "MilitaryUnitId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentFlow_ServicemanId",
+                table: "DocumentFlow",
+                column: "ServicemanId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DocumentFlow_StatusId",

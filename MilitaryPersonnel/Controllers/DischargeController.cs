@@ -7,10 +7,14 @@ namespace MilitaryPersonnel.Controllers
     public class DischargeController : Controller
     {
         private readonly IDischargeRepository _dischargeRepository;
+        private readonly IServicemanRepository _servicemanRepository;
 
-        public DischargeController(IDischargeRepository dischargeRepository)
+        public DischargeController(
+            IDischargeRepository dischargeRepository, 
+            IServicemanRepository servicemanRepository)
         {
             _dischargeRepository = dischargeRepository;
+            _servicemanRepository = servicemanRepository;
         }
 
         // GET: Discharge
@@ -50,8 +54,9 @@ namespace MilitaryPersonnel.Controllers
         }
 
         // GET: Discharge/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            await PopulateDropdown();
             return View(new Discharge());
         }
 
@@ -67,6 +72,8 @@ namespace MilitaryPersonnel.Controllers
                     await _dischargeRepository.AddDischargeAsync(model);
                     return RedirectToAction("Index");
                 }
+
+                await PopulateDropdown(model);
                 return View(model);
             }
             catch (Exception ex)
@@ -88,6 +95,7 @@ namespace MilitaryPersonnel.Controllers
                 if (discharge == null)
                     return RedirectToAction("EP404", "EP");
 
+                await PopulateDropdown();
                 return View(discharge);
             }
             catch (Exception ex)
@@ -109,6 +117,8 @@ namespace MilitaryPersonnel.Controllers
                     await _dischargeRepository.UpdateDischargeAsync(model);
                     return RedirectToAction("Index");
                 }
+
+                await PopulateDropdown(model);
                 return View(model);
             }
             catch (Exception ex)
@@ -154,6 +164,17 @@ namespace MilitaryPersonnel.Controllers
                 ViewBag.ErrorMessage = ex.Message;
                 return RedirectToAction("EP500", "EP");
             }
+        }
+
+        private async Task PopulateDropdown(Discharge? model = null)
+        {
+            var servicemen = await _servicemanRepository.GetAllServicemenAsync();
+            ViewBag.ServicemanList = servicemen
+                .Select(s => new
+                {
+                    ServicemanId = s.Id,
+                    ServicemanFullName = s.LastName + " " + s.FirstName + " " + s.MiddleName
+                }).ToList();
         }
     }
 }

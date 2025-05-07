@@ -72,8 +72,6 @@ namespace Domain.Models
         [Range(1, int.MaxValue, ErrorMessage = "Fitness category ID must be a positive integer.")]
         public int? FitnessCategoryId { get; set; }
         public string? FitnessCategory { get; set; }
-
-        [Required(ErrorMessage = "Is officer status is required.")]
         public bool? IsOfficer { get; set; }
     }
 }

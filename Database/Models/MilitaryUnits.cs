@@ -9,5 +9,7 @@ public partial class MilitaryUnits
 
     public string UnitName { get; set; } = null!;
 
+    public virtual ICollection<DocumentFlow> DocumentFlow { get; set; } = new List<DocumentFlow>();
+
     public virtual ICollection<Subdivisions> Subdivisions { get; set; } = new List<Subdivisions>();
 }

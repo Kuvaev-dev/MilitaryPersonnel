@@ -1,16 +1,21 @@
 ﻿using Domain.Models;
 using Domain.RepositoryAccess;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MilitaryPersonnel.Controllers
 {
     public class ContactInfoController : Controller
     {
         private readonly IContactInfoRepository _contactInfoRepository;
+        private readonly IServicemanRepository _servicemanRepository;
 
-        public ContactInfoController(IContactInfoRepository contactInfoRepository)
+        public ContactInfoController(
+            IContactInfoRepository contactInfoRepository, 
+            IServicemanRepository servicemanRepository)
         {
             _contactInfoRepository = contactInfoRepository;
+            _servicemanRepository = servicemanRepository;
         }
 
         // GET: ContactInfo
@@ -50,8 +55,9 @@ namespace MilitaryPersonnel.Controllers
         }
 
         // GET: ContactInfo/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            await PopulateDropdown();
             return View(new ContactInfo());
         }
 
@@ -67,11 +73,14 @@ namespace MilitaryPersonnel.Controllers
                     await _contactInfoRepository.AddContactInfoAsync(model);
                     return RedirectToAction("Index");
                 }
+
+                await PopulateDropdown(model);
                 return View(model);
             }
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
+                await PopulateDropdown(model);
                 return RedirectToAction("Index", "ContactInfo");
             }
         }
@@ -88,6 +97,7 @@ namespace MilitaryPersonnel.Controllers
                 if (contactInfo == null)
                     return RedirectToAction("EP404", "EP");
 
+                await PopulateDropdown(contactInfo);
                 return View(contactInfo);
             }
             catch (Exception ex)
@@ -109,11 +119,14 @@ namespace MilitaryPersonnel.Controllers
                     await _contactInfoRepository.UpdateContactInfoAsync(model);
                     return RedirectToAction("Index");
                 }
+
+                await PopulateDropdown(model);
                 return View(model);
             }
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
+                await PopulateDropdown(model);
                 return RedirectToAction("Index", "ContactInfo");
             }
         }
@@ -154,6 +167,17 @@ namespace MilitaryPersonnel.Controllers
                 ViewBag.ErrorMessage = ex.Message;
                 return RedirectToAction("EP500", "EP");
             }
+        }
+
+        private async Task PopulateDropdown(ContactInfo? model = null)
+        {
+            var servicemen = await _servicemanRepository.GetAllServicemenAsync() ?? new List<Serviceman>();
+            ViewBag.ServicemanList = new SelectList(
+                servicemen.Select(s => new
+                {
+                    s.Id,
+                    FullName = $"{s.LastName} {s.FirstName} {s.MiddleName}".Trim()
+                }), "Id", "FullName", model?.ServicemanId);
         }
     }
 }

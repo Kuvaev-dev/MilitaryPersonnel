@@ -21,22 +21,12 @@ namespace MilitaryPersonnel.Controllers
         }
 
         // GET: MobilizationListEntry?mobilizationListId=5
-        public async Task<IActionResult> Index(int? mobilizationListId)
+        public async Task<IActionResult> Index()
         {
             try
             {
-                if (!mobilizationListId.HasValue)
-                    return RedirectToAction("Index", "MobilizationList");
-
-                var mobilizationList = await _mobilizationListRepository.GetMobilizationListByIdAsync(mobilizationListId.Value);
-                if (mobilizationList == null)
-                    return RedirectToAction("EP404", "EP");
-
-                ViewBag.MobilizationListId = mobilizationListId.Value;
-                ViewBag.MobilizationListName = mobilizationList.ListName;
-
-                var mobilizationListEntries = await _mobilizationListEntryRepository.GetMobilizationListEntriesAsync(mobilizationListId.Value);
-                return View(mobilizationListEntries);
+                var entries = await _mobilizationListEntryRepository.GetMobilizationListEntriesAsync();
+                return View(entries);
             }
             catch (Exception ex)
             {
@@ -67,22 +57,13 @@ namespace MilitaryPersonnel.Controllers
         }
 
         // GET: MobilizationListEntry/Create?mobilizationListId=5
-        public async Task<IActionResult> Create(int? mobilizationListId)
+        public async Task<IActionResult> Create()
         {
             try
             {
-                if (!mobilizationListId.HasValue)
-                    return RedirectToAction("Index", "MobilizationList");
+                await PopulateDropdowns();
 
-                var mobilizationList = await _mobilizationListRepository.GetMobilizationListByIdAsync(mobilizationListId.Value);
-                if (mobilizationList == null)
-                    return RedirectToAction("EP404", "EP");
-
-                ViewBag.MobilizationListList = await _mobilizationListRepository.GetMobilizationListsAsync();
-                ViewBag.ServicemanList = await _servicemanRepository.GetAllServicemenAsync();
-
-                var model = new MobilizationListEntry { MobilizationListId = mobilizationListId.Value };
-                return View(model);
+                return View(new MobilizationListEntry());
             }
             catch (Exception ex)
             {
@@ -101,11 +82,10 @@ namespace MilitaryPersonnel.Controllers
                 if (ModelState.IsValid)
                 {
                     await _mobilizationListEntryRepository.AddMobilizationListEntryAsync(model);
-                    return RedirectToAction("Index", new { mobilizationListId = model.MobilizationListId });
+                    return RedirectToAction("Index");
                 }
 
-                ViewBag.MobilizationListList = await _mobilizationListRepository.GetMobilizationListsAsync();
-                ViewBag.ServicemanList = await _servicemanRepository.GetAllServicemenAsync();
+                await PopulateDropdowns(model);
 
                 return View(model);
             }
@@ -121,15 +101,11 @@ namespace MilitaryPersonnel.Controllers
         {
             try
             {
-                if (!id.HasValue)
-                    return RedirectToAction("Index", "MobilizationList");
-
                 var mobilizationListEntry = await _mobilizationListEntryRepository.GetMobilizationListEntryAsync(id.Value);
                 if (mobilizationListEntry == null)
                     return RedirectToAction("EP404", "EP");
 
-                ViewBag.MobilizationListList = await _mobilizationListRepository.GetMobilizationListsAsync();
-                ViewBag.ServicemanList = await _servicemanRepository.GetAllServicemenAsync();
+                await PopulateDropdowns();
 
                 return View(mobilizationListEntry);
             }
@@ -153,8 +129,7 @@ namespace MilitaryPersonnel.Controllers
                     return RedirectToAction("Index", new { mobilizationListId = model.MobilizationListId });
                 }
 
-                ViewBag.MobilizationListList = await _mobilizationListRepository.GetMobilizationListsAsync();
-                ViewBag.ServicemanList = await _servicemanRepository.GetAllServicemenAsync();
+                await PopulateDropdowns(model);
 
                 return View(model);
             }
@@ -193,18 +168,33 @@ namespace MilitaryPersonnel.Controllers
         {
             try
             {
-                var mobilizationListEntry = await _mobilizationListEntryRepository.GetMobilizationListEntryAsync(id);
-                if (mobilizationListEntry == null)
-                    return RedirectToAction("EP404", "EP");
-
                 await _mobilizationListEntryRepository.DeleteMobilizationListEntryAsync(id);
-                return RedirectToAction("Index", new { mobilizationListId = mobilizationListEntry.MobilizationListId });
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
                 return RedirectToAction("EP500", "EP");
             }
+        }
+
+        private async Task PopulateDropdowns(MobilizationListEntry? model = null)
+        {
+            var mobilizationLists = await _mobilizationListRepository.GetMobilizationListsAsync();
+            var servisemen = await _servicemanRepository.GetAllServicemenAsync();
+
+            ViewBag.MobilizationLists = mobilizationLists
+                .Select(l => new
+                {
+                    MobilizationListId = l.Id,
+                    MobilizationListName = l.ListName
+                }).ToList();
+            ViewBag.ServicemanList = servisemen
+                .Select(s => new
+                {
+                    ServicemanId = s.Id,
+                    ServicemanFullName = s.LastName + " " + s.FirstName + " " + s.MiddleName
+                }).ToList();
         }
     }
 }

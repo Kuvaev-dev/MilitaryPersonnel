@@ -1,0 +1,36 @@
+﻿@model Domain.Models.DocumentFlow
+
+@{
+    ViewData["Title"] = "Список мобілізації";
+    ViewData["DocumentTitle"] = "СПИСОК";
+    ViewData["DocumentSubtitle"] = "На мобілізацію";
+    Layout = null;
+}
+
+<link href="~/css/DocumentContent.css" rel="stylesheet" />
+
+@await Html.PartialAsync("_DocumentHeader", Model)
+
+<div class="content">
+    <p>СПИСОК ВКЛЮЧАЄ</p>
+    <p>для @Model.ServicemanFullName</p>
+    <p style="margin-top: 10mm;">Зміст документа:</p>
+    <p style="text-indent: 10mm;">@Model.Content</p>
+    <p style="margin-top: 10mm;">Тип документа: @Model.DocumentType</p>
+    <p>Статус: @Model.Status</p>
+</div>
+
+<div class="footer">
+    <div class="signature">
+        <div>
+            <p>Відповідальний за мобілізацію</p>
+            <p style="margin-top: 10mm;">________________ @Model.CreatedBy</p>
+        </div>
+        <div style="text-align: right;">
+            <p>"@Model.CreatedDate?.ToString("dd")" @Model.CreatedDate?.ToString("MMMM") @Model.CreatedDate?.ToString("yyyy") р.</p>
+            <p>(дата)</p>
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-secondary print-button" type="button" onclick="window.print();">Друк</button>

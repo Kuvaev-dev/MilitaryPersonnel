@@ -17,7 +17,7 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ServicemanId, "Select New Serviceman", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.ServicemanId, "Select New Serviceman", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.DropDownListFor(
                          model => model.ServicemanId,
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FullName, "Enter New Full Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FullName, "Enter New Full Name", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Relationship, "Enter New Relationship", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Relationship, "Enter New Relationship", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.Relationship, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Relationship, "", new { @class = "text-danger" })
@@ -45,7 +45,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BirthDate, "Enter New Birth Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BirthDate, "Enter New Birth Date", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                 @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })

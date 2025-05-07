@@ -1,5 +1,4 @@
-﻿<!-- Views/Home/Register.cshtml -->
-@model MilitaryPersonnel.Models.RegisterViewModel
+﻿@model MilitaryPersonnel.Models.RegisterViewModel
 
 @{
     ViewData["Title"] = "Register";
@@ -25,55 +24,59 @@
                             @ViewBag.ErrorMessage
                         </div>
                     }
-                    <form asp-action="Register" method="post">
-                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                    @using (Html.BeginForm("Register", "Home", null, FormMethod.Post))
+                    {
                         @Html.AntiForgeryToken()
+                        <div class="text-danger mb-3">
+                            @Html.ValidationSummary(true, "")
+                        </div>
 
                         <div class="form-group mb-3">
-                            <label asp-for="UserName" class="form-label">Username</label>
+                            @Html.LabelFor(model => model.UserName, "Username", htmlAttributes: new { @class = "form-label" })
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                <input asp-for="UserName" class="form-control" placeholder="Enter username" />
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter username", required = "required" } })
                             </div>
-                            <span asp-validation-for="UserName" class="text-danger"></span>
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group mb-3">
-                            <label asp-for="Email" class="form-label">Email</label>
+                            @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "form-label" })
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                <input asp-for="Email" class="form-control" type="email" placeholder="Enter email" />
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email", placeholder = "Enter email", required = "required" } })
                             </div>
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group mb-3">
-                            <label asp-for="Password" class="form-label">Password</label>
+                            @Html.LabelFor(model => model.Password, "Password", htmlAttributes: new { @class = "form-label" })
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                <input asp-for="Password" class="form-control" type="password" placeholder="Enter password" />
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password", placeholder = "Enter password", required = "required" } })
                             </div>
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group mb-3">
-                            <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                            @Html.LabelFor(model => model.ConfirmPassword, "Confirm Password", htmlAttributes: new { @class = "form-label" })
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Confirm password" />
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", type = "password", placeholder = "Confirm password", required = "required" } })
                             </div>
-                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group d-flex gap-2">
                             <button type="submit" class="btn btn-success" style="background-color: #556B2F; border-color: #556B2F;">
                                 <i class="bi bi-person-plus me-1"></i>Register
                             </button>
-                            <a asp-action="Login" class="btn btn-primary" style="background-color: #2F4F4F; border-color: #2F4F4F;">
-                                <i class="bi bi-box-arrow-in-right me-1"></i>Back to Login
-                            </a>
+                            <div class="btn btn-primary" style="background-color: #2F4F4F; border-color: #2F4F4F;">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>
+                                @Html.ActionLink("Back to Login", "Login", "Home", null, new { @class = "text-white text-decoration-none" })
+                            </div>
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
         </div>

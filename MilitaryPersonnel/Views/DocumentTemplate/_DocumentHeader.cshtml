@@ -1,0 +1,10 @@
+﻿@model Domain.Models.DocumentFlow
+
+<link href="~/css/DocumentHeader.css" rel="stylesheet" />
+
+<div class="document-header">
+    <p>МІНІСТЕРСТВО ОБОРОНИ УКРАЇНИ</p>
+    <p>ВІЙСЬКОВА ЧАСТИНА "@Model.MilitaryUnit"</p>
+    <h1>@ViewData["DocumentTitle"]</h1>
+    <h2>@ViewData["DocumentSubtitle"]</h2>
+</div>

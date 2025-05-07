@@ -17,11 +17,11 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MobilizationListId, "Select New Mobilization List", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.MobilizationListId, "Select New Mobilization List", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.DropDownListFor(
                          model => model.MobilizationListId,
-                         new SelectList(ViewBag.MobilizationListList, "MobilizationListId", "ListName"),
+                         new SelectList(ViewBag.MobilizationLists, "MobilizationListId", "MobilizationListName"),
                          "Select Mobilization List",
                          new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MobilizationListId, "", new { @class = "text-danger" })
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ServicemanId, "Select New Serviceman", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.ServicemanId, "Select New Serviceman", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.DropDownListFor(
                          model => model.ServicemanId,

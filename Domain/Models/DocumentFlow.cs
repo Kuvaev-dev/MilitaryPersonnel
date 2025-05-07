@@ -39,5 +39,11 @@ namespace Domain.Models
 
         [Display(Name = "Status")]
         public string? Status { get; set; }
+
+        [Required(ErrorMessage = "Serviceman is required.")]
+        public int MilitaryUnitId { get; set; }
+
+        [Display(Name = "Serviceman")]
+        public string? MilitaryUnit { get; set; }
     }
 }

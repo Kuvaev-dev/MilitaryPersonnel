@@ -16,11 +16,11 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DocumentId, "Select Document", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DocumentId, "Select Document", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.DropDownListFor(
                          model => model.DocumentId,
-                         new SelectList(ViewBag.DocumentList, "DocumentId", "DocumentTitle"),
+                         new SelectList(ViewBag.DocumentList, "DocumentFlowId", "DocumentFlowTitle"),
                          "Select Document",
                          new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DocumentId, "", new { @class = "text-danger" })
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AuthorId, "Select Author", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AuthorId, "Select Author", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.DropDownListFor(
                          model => model.AuthorId,
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ResolutionText, "Enter Resolution Text", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ResolutionText, "Enter Resolution Text", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
                 @Html.TextAreaFor(model => model.ResolutionText, new { @class = "form-control", rows = "5" })
                 @Html.ValidationMessageFor(model => model.ResolutionText, "", new { @class = "text-danger" })
@@ -48,9 +48,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ResolutionDate, "Enter Resolution Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ResolutionDate, "Enter Resolution Date", htmlAttributes: new { @class = "control-label col-md-10" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.ResolutionDate, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
+                @Html.EditorFor(model => model.ResolutionDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                 @Html.ValidationMessageFor(model => model.ResolutionDate, "", new { @class = "text-danger" })
             </div>
         </div>

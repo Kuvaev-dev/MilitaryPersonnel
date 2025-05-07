@@ -1,16 +1,22 @@
-﻿using Domain.Models;
+﻿using Database.Repositories;
+using Domain.Models;
 using Domain.RepositoryAccess;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MilitaryPersonnel.Controllers
 {
     public class TrainingController : Controller
     {
         private readonly ITrainingRepository _trainingRepository;
+        private readonly IServicemanRepository _servicemanRepository;
 
-        public TrainingController(ITrainingRepository trainingRepository)
+        public TrainingController(
+            ITrainingRepository trainingRepository, 
+            IServicemanRepository servicemanRepository)
         {
             _trainingRepository = trainingRepository;
+            _servicemanRepository = servicemanRepository;
         }
 
         // GET: Training
@@ -50,8 +56,9 @@ namespace MilitaryPersonnel.Controllers
         }
 
         // GET: Training/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            await PopulateDropdown();
             return View(new Training());
         }
 
@@ -70,6 +77,7 @@ namespace MilitaryPersonnel.Controllers
                         return View(model);
                     }
                     await _trainingRepository.AddTrainingAsync(model);
+                    await PopulateDropdown(model);
                     return RedirectToAction("Index");
                 }
                 return View(model);
@@ -77,6 +85,7 @@ namespace MilitaryPersonnel.Controllers
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
+                await PopulateDropdown(model);
                 return RedirectToAction("Index", "Training");
             }
         }
@@ -93,6 +102,7 @@ namespace MilitaryPersonnel.Controllers
                 if (training == null)
                     return RedirectToAction("EP404", "EP");
 
+                await PopulateDropdown(training);
                 return View(training);
             }
             catch (Exception ex)
@@ -117,6 +127,7 @@ namespace MilitaryPersonnel.Controllers
                         return View(model);
                     }
                     await _trainingRepository.UpdateTrainingAsync(model);
+                    await PopulateDropdown(model);
                     return RedirectToAction("Index");
                 }
                 return View(model);
@@ -124,6 +135,7 @@ namespace MilitaryPersonnel.Controllers
             catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
+                await PopulateDropdown(model);
                 return RedirectToAction("Index", "Training");
             }
         }
@@ -164,6 +176,17 @@ namespace MilitaryPersonnel.Controllers
                 ViewBag.ErrorMessage = ex.Message;
                 return RedirectToAction("EP500", "EP");
             }
+        }
+
+        private async Task PopulateDropdown(Training? model = null)
+        {
+            var servicemen = await _servicemanRepository.GetAllServicemenAsync() ?? new List<Serviceman>();
+            ViewBag.ServicemanList = new SelectList(
+                servicemen.Select(s => new
+                {
+                    s.Id,
+                    FullName = $"{s.LastName} {s.FirstName} {s.MiddleName}".Trim()
+                }), "Id", "FullName", model?.ServicemanId);
         }
     }
 }

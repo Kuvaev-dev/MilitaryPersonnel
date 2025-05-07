@@ -19,7 +19,9 @@ namespace Database.Repositories
         {
             var entities = await _context.DocumentFlow
                 .AsNoTracking()
+                .Include(s => s.MilitaryUnit)
                 .Include(s => s.DocumentType)
+                .Include(s => s.Serviceman)
                 .Include(s => s.CreatedBy)
                 .Include(s => s.Status)
                 .ToListAsync();
@@ -38,6 +40,10 @@ namespace Database.Repositories
                 CreatedBy = a.CreatedBy != null
                     ? $"{a.CreatedBy.FirstName} {a.CreatedBy.LastName}"
                     : null,
+                ServicemanId = a.ServicemanId.Value,
+                ServicemanFullName = a.Serviceman.LastName + " " + a.Serviceman.FirstName + " " + a.Serviceman.MiddleName,
+                MilitaryUnitId = a.MilitaryUnitId.Value,
+                MilitaryUnit = a.MilitaryUnit.UnitName
             }).ToList();
         }
 
@@ -45,6 +51,8 @@ namespace Database.Repositories
         {
             var entity = await _context.DocumentFlow
                 .AsNoTracking()
+                .Include(s => s.MilitaryUnit)
+                .Include(s => s.Serviceman)
                 .Include(s => s.DocumentType)
                 .Include(s => s.CreatedBy)
                 .Include(s => s.Status)
@@ -64,6 +72,10 @@ namespace Database.Repositories
                 CreatedBy = entity.CreatedBy != null
                     ? $"{entity.CreatedBy.FirstName} {entity.CreatedBy.LastName}"
                     : null,
+                ServicemanId = entity.ServicemanId.Value,
+                ServicemanFullName = entity.Serviceman.LastName + " " + entity.Serviceman.FirstName + " " + entity.Serviceman.MiddleName,
+                MilitaryUnitId = entity.MilitaryUnitId.Value,
+                MilitaryUnit = entity.MilitaryUnit.UnitName
             };
         }
 
@@ -71,7 +83,9 @@ namespace Database.Repositories
         {
             var documentFlow = await _context.DocumentFlow
                 .AsNoTracking()
+                .Include(df => df.MilitaryUnit)
                 .Include(df => df.DocumentType)
+                .Include(df => df.Serviceman)
                 .Include(df => df.CreatedBy)
                 .Include(df => df.Status)
                 .FirstOrDefaultAsync(df => df.CreatedById == id);
@@ -89,7 +103,11 @@ namespace Database.Repositories
                     : null,
                 CreatedDate = documentFlow.CreatedDate,
                 StatusId = documentFlow.StatusId,
-                Status = documentFlow.Status?.StatusName
+                Status = documentFlow.Status?.StatusName,
+                ServicemanId = documentFlow.ServicemanId.Value,
+                ServicemanFullName = documentFlow.Serviceman.LastName + " " + documentFlow.Serviceman.FirstName + " " + documentFlow.Serviceman.MiddleName,
+                MilitaryUnitId = documentFlow.MilitaryUnitId.Value,
+                MilitaryUnit = documentFlow.MilitaryUnit.UnitName
             };
         }
 
@@ -100,6 +118,9 @@ namespace Database.Repositories
                 Title = document.Title,
                 Content = document.Content,
                 DocumentTypeId = document.DocumentTypeId,
+                CreatedById = document.CreatedById,
+                ServicemanId = document.ServicemanId,
+                MilitaryUnitId = document.MilitaryUnitId,
                 CreatedDate = document.CreatedDate,
                 StatusId = document.StatusId
             };
@@ -116,6 +137,9 @@ namespace Database.Repositories
             entity.Title = document.Title;
             entity.Content = document.Content;
             entity.DocumentTypeId = document.DocumentTypeId;
+            entity.CreatedById = document.CreatedById;
+            entity.ServicemanId = document.ServicemanId;
+            entity.MilitaryUnitId = document.MilitaryUnitId;
             entity.CreatedDate = document.CreatedDate;
             entity.StatusId = document.StatusId;
 

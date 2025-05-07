@@ -88,20 +88,7 @@ namespace MilitaryPersonnel
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Award}/{action=Index}/{id?}");
-
-            //using (var scope = app.Services.CreateScope())
-            //{
-            //    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            //    string[] roleNames = { "User", "Admin" };
-            //    foreach (var roleName in roleNames)
-            //    {
-            //        if (!await roleManager.RoleExistsAsync(roleName))
-            //        {
-            //            await roleManager.CreateAsync(new IdentityRole(roleName));
-            //        }
-            //    }
-            //}
+                pattern: "{controller=Home}/{action=Login}/{id?}");
 
             app.Run();
         }
