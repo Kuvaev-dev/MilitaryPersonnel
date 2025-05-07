@@ -1,11 +1,13 @@
 ﻿using Database.Repositories;
 using Domain.Models;
 using Domain.RepositoryAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MilitaryPersonnel.Controllers
 {
+    [Authorize]
     public class TrainingController : Controller
     {
         private readonly ITrainingRepository _trainingRepository;

@@ -14,6 +14,7 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Discharge date is required.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateOnly DischargeDate { get; set; }
 
         [Required(ErrorMessage = "Discharge reason is required.")]

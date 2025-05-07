@@ -1,9 +1,11 @@
 ﻿using Domain.Models;
 using Domain.RepositoryAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MilitaryPersonnel.Controllers
 {
+    [Authorize]
     public class SubdivisionController : Controller
     {
         private readonly ISubdivisionRepository _subdivisionRepository;

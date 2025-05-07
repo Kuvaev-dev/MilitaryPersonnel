@@ -1,11 +1,13 @@
 ﻿using Domain.Models;
 using Domain.RepositoryAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.VisualBasic;
 
 namespace MilitaryPersonnel.Controllers
 {
+    [Authorize]
     public class DocumentFlowController : Controller
     {
         private readonly IDocumentFlowRepository _documentFlowRepository;

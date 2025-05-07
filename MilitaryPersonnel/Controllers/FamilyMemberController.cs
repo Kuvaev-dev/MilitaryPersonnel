@@ -1,9 +1,11 @@
 ﻿using Domain.Models;
 using Domain.RepositoryAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MilitaryPersonnel.Controllers
 {
+    [Authorize]
     public class FamilyMemberController : Controller
     {
         private readonly IFamilyMemberRepository _familyMemberRepository;

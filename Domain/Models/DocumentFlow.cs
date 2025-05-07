@@ -32,6 +32,7 @@ namespace Domain.Models
         public string? ServicemanFullName { get; set; }
 
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? CreatedDate { get; set; }
 
         [Required(ErrorMessage = "Status is required.")]

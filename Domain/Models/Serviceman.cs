@@ -20,6 +20,7 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Birth date is required.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateOnly BirthDate { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Civil profession ID must be a positive integer.")]

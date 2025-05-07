@@ -24,6 +24,7 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Issue date is required.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateOnly? IssueDate { get; set; }
     }
 }

@@ -3,9 +3,11 @@ using Domain.RepositoryAccess;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Database.Context;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MilitaryPersonnel.Controllers
 {
+    [Authorize]
     public class ServiceHistoryController : Controller
     {
         private readonly IServiceHistoryRepository _serviceHistoryRepository;

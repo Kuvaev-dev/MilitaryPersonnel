@@ -18,6 +18,7 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Assessment date is required.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateOnly? AssessmentDate { get; set; }
     }
 }

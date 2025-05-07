@@ -60,7 +60,7 @@ public partial class MilitaryPersonnelContext : IdentityDbContext<IdentityUser>
         if (!optionsBuilder.IsConfigured)
         {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-            optionsBuilder.UseSqlServer("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MilitaryPersonnelDB;TrustServerCertificate=True;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Server=sql.bsite.net\\MSSQL2016;Database=servicemen_;User Id=servicemen_;Password=Qwerty_009_008;TrustServerCertificate=True;");
         }
     }
 

@@ -1,8 +1,10 @@
 ﻿using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MilitaryPersonnel.Controllers
 {
+    [Authorize]
     public class DocumentTemplateController : Controller
     {
         public IActionResult ApprovalResolution(DocumentFlow document)

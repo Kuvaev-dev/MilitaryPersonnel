@@ -5,6 +5,8 @@ using DinkToPdf;
 using Domain.RepositoryAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Globalization;
 
 namespace MilitaryPersonnel
 {
@@ -13,6 +15,10 @@ namespace MilitaryPersonnel
         public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var ukrainianCulture = new CultureInfo("uk-UA");
+            CultureInfo.DefaultThreadCurrentCulture = ukrainianCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = ukrainianCulture;
 
             // Add services to the container.
             builder.Services.AddRazorPages();
@@ -23,6 +29,23 @@ namespace MilitaryPersonnel
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<MilitaryPersonnelContext>()
                 .AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Home/Login";
+                options.AccessDeniedPath = "/Home/Login";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.SlidingExpiration = true;
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
 
             builder.Services.Configure<IdentityOptions>(options =>
             {

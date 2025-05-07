@@ -1,10 +1,12 @@
 ﻿using Domain.Models;
 using Domain.RepositoryAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MilitaryPersonnel.Controllers
 {
+    [Authorize]
     public class ContactInfoController : Controller
     {
         private readonly IContactInfoRepository _contactInfoRepository;

@@ -13,9 +13,11 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Start date is required.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateOnly? StartDate { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateOnly? EndDate { get; set; }
 
         [Required(ErrorMessage = "Serviceman Id is required.")]

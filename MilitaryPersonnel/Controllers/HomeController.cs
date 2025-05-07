@@ -109,7 +109,7 @@ namespace MilitaryPersonnel.Controllers
 
         private IActionResult RedirectToLocal(string returnUrl)
         {
-            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl) && User.Identity.IsAuthenticated)
             {
                 return Redirect(returnUrl);
             }

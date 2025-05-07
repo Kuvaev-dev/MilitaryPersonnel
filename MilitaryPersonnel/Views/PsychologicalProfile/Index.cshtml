@@ -6,9 +6,9 @@
 }
 
 <!-- Tables Sorting -->
-<link href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css" rel="stylesheet" />
-<script src="~/Scripts/jquery/jquery.js"></script>
-<script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
 
 <style>
     #dataTable_filter input[type="search"] {
@@ -52,7 +52,7 @@
                                 @Html.DisplayFor(modelItem => item.ProfileDescription)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.AssessmentDate)
+                                @Html.DisplayFor(modelItem => item.AssessmentDate.Value.ToString("dd.MM.yyyy"))
                             </td>
                             <td class="btn-group">
                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
@@ -70,7 +70,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#dataTable').DataTable({
-            "columnDefs": [{ "orderable": false, "targets": 5 }],
+            "columnDefs": [{ "orderable": false, "targets": 3 }],
             "lengthMenu": [[5, 10, 25, 50, 75, 100, 150, 200, -1], [5, 10, 25, 50, 75, 100, 150, 200, "All"]]
         });
     });

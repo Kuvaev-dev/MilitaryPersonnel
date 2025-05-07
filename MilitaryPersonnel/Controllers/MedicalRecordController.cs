@@ -1,10 +1,12 @@
 ﻿using Domain.Models;
 using Domain.RepositoryAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace MilitaryPersonnel.Controllers
 {
+    [Authorize]
     public class MedicalRecordController : Controller
     {
         private readonly IMedicalRecordRepsitory _medicalRecordRepository;

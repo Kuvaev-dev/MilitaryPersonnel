@@ -21,7 +21,9 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Resolution date is required.")]
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? ResolutionDate { get; set; }
+
         public string? AuthorFullName { get; set; } = null!;
         public string? DocumentTitle { get; set; } = null!;
     }

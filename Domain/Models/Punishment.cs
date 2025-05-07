@@ -17,7 +17,9 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Punishment date is required.")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateOnly? PunishmentDate { get; set; }
+
         public string? ServicemenFullName { get; set; }
     }
 }
